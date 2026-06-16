@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>거실공간 | honeybrown</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f4efe8;
+    --cream:#efe7db;
+    --brown:#6f5135;
+    --brown-dark:#5c4129;
+    --brown-soft:#8a6a47;
+    --ink:#2b2520;
+    --muted:#8c8378;
+    --line:#e6ddd0;
+    --card:#ffffff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  a{text-decoration:none;color:inherit;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+
+  /* ===== Header ===== */
+  header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px;}
+  .logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:22px;color:var(--brown);letter-spacing:-.5px;}
+  .logo .roof{width:34px;height:22px;}
+  .logo-img{height:38px;width:auto;}
+  .foot-logo{height:34px;}
+  .menu{display:flex;gap:34px;font-size:15px;font-weight:600;color:#4a443c;}
+  .menu a{position:relative;padding:6px 0;transition:color .2s;}
+  .menu a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--brown);transform:scaleX(0);transform-origin:center;transition:transform .25s ease;}
+  .menu a:hover{color:var(--brown);}
+  .menu a:hover::after{transform:scaleX(1);}
+  .menu a.active{color:var(--brown);}
+  .menu a.active::after{transform:scaleX(1);}
+  .util{display:flex;align-items:center;gap:14px;font-size:13px;color:#6b6359;}
+  .util a:hover{color:var(--brown);}
+  .util .sep{color:#d8cebf;}
+  .util .cart{display:flex;align-items:center;gap:6px;}
+  .util-group{display:inline-flex;align-items:center;gap:14px;}
+  .util .greet{display:inline-flex;align-items:center;gap:6px;color:#6b6359;}
+  .util .greet b{font-weight:700;color:var(--brown);}
+  .util .greet svg{color:var(--brown);}
+  .badge-dot{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;border-radius:50%;background:var(--brown);color:#fff;font-size:11px;font-weight:700;padding:0 5px;}
+
+  /* ===== Hero ===== */
+  .hero{position:relative;height:300px;background:var(--cream);overflow:hidden;}
+  .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left center;}
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(244,240,233,0) 42%,rgba(244,240,233,.82) 60%,#f1ebe1 74%);}
+  .hero-inner{position:relative;max-width:1180px;height:100%;margin:0 auto;display:flex;justify-content:flex-end;align-items:center;padding:0 24px;}
+  .hero-text{width:38%;min-width:300px;padding-left:24px;}
+  .hero-text .small{font-size:16px;color:#5a5247;margin-bottom:6px;}
+  .hero-text .mid{font-size:18px;color:#6a6053;margin-bottom:14px;}
+  .hero-text .big{font-size:38px;font-weight:800;color:var(--brown);letter-spacing:-1px;}
+
+  /* ===== Listing head ===== */
+  .listing{padding:54px 0 80px;}
+  .l-title{display:flex;align-items:center;gap:12px;margin-bottom:26px;}
+  .l-title h2{font-size:26px;font-weight:800;letter-spacing:-.5px;}
+  .items-badge{background:var(--brown);color:#fff;font-size:12px;font-weight:600;padding:4px 11px;border-radius:14px;}
+
+  .toolbar{display:flex;align-items:center;gap:10px;margin-bottom:34px;flex-wrap:wrap;}
+  .chip{border:1px solid var(--line);background:#fff;color:#5a5247;font-size:14px;font-weight:600;padding:10px 20px;border-radius:24px;cursor:pointer;transition:all .2s;}
+  .chip:hover{border-color:var(--brown-soft);color:var(--brown);}
+  .chip.active{background:var(--brown);border-color:var(--brown);color:#fff;}
+  .icon-btn{width:42px;height:42px;border:1px solid var(--line);background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#6b6359;}
+  .icon-btn:hover{border-color:var(--brown-soft);color:var(--brown);}
+  .search{margin-left:auto;display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:10px 18px;width:300px;}
+  .search input{border:none;outline:none;flex:1;font-size:14px;background:transparent;color:var(--ink);font-family:inherit;}
+  .search input::placeholder{color:#b3a99b;}
+  .search svg{color:#9a9082;flex-shrink:0;}
+
+  /* ===== Grid ===== */
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px 22px;}
+  .card{background:var(--card);border:1px solid #efe7da;border-radius:10px;overflow:hidden;transition:transform .22s,box-shadow .22s;}
+  .card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(90,70,45,.12);}
+  .thumb{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;background:#fff;overflow:hidden;}
+  .thumb img{width:100%;height:100%;object-fit:cover;}
+  .info{padding:18px 16px 18px;text-align:center;}
+  .info .name{font-size:15px;font-weight:700;color:#332c24;margin-bottom:8px;letter-spacing:-.3px;}
+  .info .price{font-size:15px;font-weight:600;color:#4a443c;margin-bottom:15px;}
+  .btns{display:flex;gap:8px;}
+  .btns button{flex:1;font-family:inherit;font-size:12.5px;font-weight:600;padding:9px 0;border-radius:6px;cursor:pointer;transition:all .2s;}
+  .btn-detail{background:#fff;border:1px solid #d8cdbd;color:#6b6054;}
+  .btn-detail:hover{border-color:var(--brown);color:var(--brown);}
+  .btn-cart{background:var(--brown);border:1px solid var(--brown);color:#fff;}
+  .btn-cart:hover{background:var(--brown-dark);}
+
+  /* ===== Pagination ===== */
+  .pager{display:flex;justify-content:center;gap:8px;margin-top:50px;}
+  .pager a{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:6px;font-size:14px;font-weight:600;color:#6b6359;background:#fff;transition:all .2s;}
+  .pager a:hover{border-color:var(--brown-soft);color:var(--brown);}
+  .pager a.active{background:var(--brown);border-color:var(--brown);color:#fff;}
+
+  /* ===== Footer ===== */
+  footer{background:#e7ddcd;color:#6f6557;font-size:12px;margin-top:10px;}
+  .foot{display:flex;gap:40px;padding:42px 0;align-items:flex-start;}
+  .foot .logo{font-size:20px;flex-shrink:0;}
+  .foot-info{line-height:1.9;}
+  .foot-info .row{margin-bottom:2px;}
+  .foot-info strong{color:#5c5347;font-weight:700;}
+  .copy{font-size:11px;color:#8a8072;margin-top:10px;}
+
+  /* ===== Filter Modal ===== */
+  .modal-overlay{position:fixed;inset:0;background:rgba(45,33,22,.46);display:none;align-items:center;justify-content:center;z-index:100;padding:24px;}
+  .modal-overlay.open{display:flex;}
+  .modal{background:#fbf8f3;width:100%;max-width:520px;max-height:90vh;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 30px 70px rgba(60,40,20,.32);animation:pop .26s ease;}
+  @keyframes pop{from{transform:translateY(16px);opacity:0}to{transform:none;opacity:1}}
+  .modal-head{display:flex;align-items:center;justify-content:space-between;padding:22px 28px;border-bottom:1px solid var(--line);}
+  .modal-head h3{font-size:23px;font-weight:800;letter-spacing:-.5px;}
+  .modal-close{background:none;border:none;cursor:pointer;color:#8a8076;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:8px;transition:.2s;}
+  .modal-close:hover{background:#efe7da;color:var(--brown);}
+  .modal-body{padding:0 28px;overflow-y:auto;}
+  .fsec{padding:24px 0;border-bottom:1px solid var(--line);}
+  .fsec:last-child{border-bottom:none;}
+  .fsec h4{font-size:17px;font-weight:800;color:var(--brown);margin-bottom:18px;}
+
+  .opt-row{display:flex;flex-wrap:wrap;gap:16px 26px;}
+  .radio{display:flex;align-items:center;gap:9px;cursor:pointer;font-size:15px;color:#4a443c;}
+  .radio input{appearance:none;-webkit-appearance:none;width:19px;height:19px;border:1.5px solid #c3b6a3;border-radius:50%;display:grid;place-content:center;cursor:pointer;flex-shrink:0;transition:.15s;}
+  .radio input::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--brown);transform:scale(0);transition:.15s;}
+  .radio input:checked{border-color:var(--brown);}
+  .radio input:checked::before{transform:scale(1);}
+
+  .price-slider{position:relative;height:26px;margin:4px 0;}
+  .ps-track{position:absolute;top:11px;left:0;right:0;height:4px;border-radius:4px;background:#e7ddcd;}
+  .ps-fill{position:absolute;top:11px;height:4px;border-radius:4px;background:var(--brown);}
+  .price-slider input[type=range]{position:absolute;top:3px;left:0;width:100%;-webkit-appearance:none;appearance:none;background:none;pointer-events:none;height:20px;margin:0;}
+  .price-slider input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;pointer-events:auto;width:18px;height:18px;border-radius:50%;background:var(--brown);border:3px solid #fff;box-shadow:0 1px 5px rgba(60,40,20,.4);cursor:pointer;}
+  .price-slider input[type=range]::-moz-range-thumb{pointer-events:auto;width:14px;height:14px;border-radius:50%;background:var(--brown);border:3px solid #fff;box-shadow:0 1px 5px rgba(60,40,20,.4);cursor:pointer;}
+  .ps-labels{display:flex;justify-content:space-between;font-size:13px;color:#9a9082;margin-top:4px;}
+  .price-inputs{display:flex;align-items:flex-end;gap:14px;margin-top:20px;}
+  .pin{flex:1;}
+  .pin label{display:block;font-size:13px;color:#9a9082;margin-bottom:8px;}
+  .pin .field{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:#fff;padding:0 13px;}
+  .pin .field input{flex:1;width:100%;border:none;outline:none;font-family:inherit;font-size:15px;padding:12px 0;background:none;color:var(--ink);}
+  .pin .field span{color:#9a9082;font-size:14px;}
+  .price-inputs .tilde{padding-bottom:13px;color:#b3a99b;}
+
+  .swatches{display:flex;gap:16px;flex-wrap:wrap;margin-top:20px;}
+  .sw{display:flex;flex-direction:column;align-items:center;gap:9px;cursor:pointer;font-size:13px;color:#6b6359;}
+  .sw .dot{width:44px;height:44px;border-radius:50%;border:1px solid rgba(0,0,0,.12);transition:.15s;}
+  .sw.sel .dot,.sw:hover .dot{box-shadow:0 0 0 2px #fbf8f3,0 0 0 4px var(--brown);}
+  .sw.sel{color:var(--brown);font-weight:600;}
+
+  .checks{display:flex;flex-wrap:wrap;gap:14px 24px;}
+  .check{display:flex;align-items:center;gap:10px;cursor:pointer;font-size:15px;color:#4a443c;}
+  .check input{appearance:none;-webkit-appearance:none;width:21px;height:21px;border:1.5px solid #c3b6a3;border-radius:5px;display:grid;place-content:center;cursor:pointer;flex-shrink:0;transition:.15s;}
+  .check input::before{content:"✓";color:#fff;font-size:13px;font-weight:800;transform:scale(0);transition:.15s;}
+  .check input:checked{background:var(--brown);border-color:var(--brown);}
+  .check input:checked::before{transform:scale(1);}
+
+  .modal-foot{display:flex;gap:14px;padding:20px 28px;border-top:1px solid var(--line);}
+  .modal-foot button{font-family:inherit;font-size:16px;font-weight:700;padding:15px 0;border-radius:10px;cursor:pointer;transition:.2s;}
+  .btn-reset{flex:1;background:#fff;border:1px solid #d8cdbd;color:#6b6054;}
+  .btn-reset:hover{border-color:var(--brown);color:var(--brown);}
+  .btn-apply{flex:1.5;background:var(--brown);border:1px solid var(--brown);color:#fff;}
+  .btn-apply:hover{background:var(--brown-dark);}
+
+  /* ===== Cart Notice ===== */
+  .notice-box{background:#fbf8f3;width:100%;max-width:360px;border-radius:16px;padding:36px 28px 26px;text-align:center;box-shadow:0 30px 70px rgba(60,40,20,.32);animation:pop .26s ease;}
+  .notice-box .n-ic{width:56px;height:56px;border-radius:50%;background:#efe7da;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;color:var(--brown);}
+  .notice-box h3{font-size:20px;font-weight:800;margin-bottom:10px;letter-spacing:-.5px;}
+  .notice-box p{font-size:14.5px;color:#8c8378;line-height:1.65;margin-bottom:24px;}
+  .notice-btns{display:flex;gap:10px;}
+  .notice-btns button{flex:1;font-family:inherit;font-size:15px;font-weight:700;padding:13px 0;border-radius:9px;cursor:pointer;transition:.2s;}
+
+  @media(max-width:1024px){
+    .grid{grid-template-columns:repeat(3,1fr);}
+    .hero-inner{grid-template-columns:1fr;}
+    .hero-text{padding:28px;text-align:center;}
+  }
+  @media(max-width:720px){
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .menu,.util .txt{display:none;}
+    .search{width:100%;margin:10px 0 0;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="index.html"><img src="images/logo_1.png" alt="honeybrown" class="logo-img"></a>
+    <nav class="menu">
+      <a href="#" class="active">거실공간</a>
+      <a href="#">주방공간</a>
+      <a href="#">침실공간</a>
+      <a href="#">스터디공간</a>
+      <a href="#">월넛 / 오크가구</a>
+      <a href="#">개인결제</a>
+    </nav>
+    <div class="util" id="util">
+      <span class="util-group" id="utilGuest">
+        <a href="login.html?return=living-room.html" class="txt">로그인</a><span class="sep txt">|</span>
+        <a href="#" class="txt">회원가입</a><span class="sep txt">|</span>
+      </span>
+      <span class="util-group" id="utilUser" style="display:none">
+        <span class="greet">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+          반가워요 <b id="userName"></b>님!
+        </span><span class="sep">|</span>
+        <a href="#" id="logoutLink">로그아웃</a><span class="sep">|</span>
+      </span>
+      <a href="#" class="cart">장바구니 <span class="badge-dot">0</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <img src="images/sub_hero.png" alt="" class="hero-bg">
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="small">공간을 완성하는 특별한 선택</div>
+      <div class="mid">프리미엄 수제 원목가구</div>
+      <div class="big">허니브라운 가구</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Listing ===== -->
+<main class="listing">
+  <div class="wrap">
+    <div class="l-title">
+      <h2>거실공간</h2>
+      <span class="items-badge">89 Items</span>
+    </div>
+
+    <div class="toolbar">
+      <button class="chip active">전체</button>
+      <button class="chip">거실장 / TV board</button>
+      <button class="chip">거실 유리 장식장</button>
+      <button class="icon-btn" id="filterBtn" title="필터">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="4" y1="7" x2="20" y2="7"/><circle cx="9" cy="7" r="2.4" fill="#fff"/>
+          <line x1="4" y1="14" x2="20" y2="14"/><circle cx="15" cy="14" r="2.4" fill="#fff"/>
+        </svg>
+      </button>
+      <div class="search">
+        <svg id="searchBtn" style="cursor:pointer" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke-linecap="round"/>
+        </svg>
+        <input type="text" id="searchInput" placeholder="찾으시는 제품을 검색하세요.">
+      </div>
+    </div>
+
+    <div class="grid" id="grid"></div>
+
+    <div class="pager">
+      <a href="#" class="active">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <a href="#">4</a>
+    </div>
+  </div>
+</main>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="wrap foot">
+    <a class="logo" href="#"><img src="images/logo_1.png" alt="honeybrown" class="logo-img foot-logo"></a>
+    <div class="foot-info">
+      <div class="row"><strong>상호</strong> 허니브라운 &nbsp;&nbsp; <strong>대표</strong> 박정아, 박경헌 &nbsp;&nbsp; <strong>사업자 등록번호</strong> 120 - 12 -18791</div>
+      <div class="row"><strong>주소</strong> 06339 서울특별시 강남구 개포로 660 (일원동) 충미빌딩 1층 허니브라운 &nbsp;&nbsp; <strong>대표전화</strong> 02 - 6221 -0857</div>
+      <div class="row"><strong>통신판매업 신고</strong> 제 2014 - 서울강남 - 01190호 &nbsp;&nbsp; <strong>개인정보관리책임자</strong> 박경헌 &nbsp;&nbsp; <strong>이메일</strong> honeybrown_@naver.com</div>
+      <div class="row">Hosting by CAFE24</div>
+      <div class="copy">COPYRIGHT © 허니브라운가구 ALL RIGHTS RESERVED.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== Filter Modal ===== -->
+<div class="modal-overlay" id="filterModal">
+  <div class="modal" role="dialog" aria-modal="true" aria-label="필터">
+    <div class="modal-head">
+      <h3>필터</h3>
+      <button class="modal-close" id="modalClose" aria-label="닫기">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <!-- 정렬 -->
+      <div class="fsec">
+        <h4>정렬</h4>
+        <div class="opt-row">
+          <label class="radio"><input type="radio" name="sort" value="new"> 최신순</label>
+          <label class="radio"><input type="radio" name="sort" value="low" checked> 낮은 가격순</label>
+          <label class="radio"><input type="radio" name="sort" value="high"> 높은 가격순</label>
+          <label class="radio"><input type="radio" name="sort" value="popular"> 인기순</label>
+        </div>
+      </div>
+
+      <!-- 가격 -->
+      <div class="fsec">
+        <h4>가격</h4>
+        <div class="price-slider">
+          <div class="ps-track"></div>
+          <div class="ps-fill" id="psFill"></div>
+          <input type="range" min="0" max="5000000" step="50000" value="0" id="minRange">
+          <input type="range" min="0" max="5000000" step="50000" value="2000000" id="maxRange">
+        </div>
+        <div class="ps-labels"><span>0원</span><span>5,000,000원</span></div>
+        <div class="price-inputs">
+          <div class="pin">
+            <label>최소 금액</label>
+            <div class="field"><input type="text" id="minInput" value="0"><span>원</span></div>
+          </div>
+          <div class="tilde">~</div>
+          <div class="pin">
+            <label>최대 금액</label>
+            <div class="field"><input type="text" id="maxInput" value="2,000,000"><span>원</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 색상 -->
+      <div class="fsec">
+        <h4>색상</h4>
+        <div class="opt-row">
+          <label class="radio"><input type="radio" name="colorType" value="all" checked> 전체</label>
+          <label class="radio"><input type="radio" name="colorType" value="wood"> 우드톤</label>
+          <label class="radio"><input type="radio" name="colorType" value="solid"> 단색</label>
+        </div>
+        <div class="swatches" id="swatches">
+          <div class="sw" data-color="오크"><span class="dot" style="background:repeating-linear-gradient(118deg,#ddae76,#ddae76 3px,#d09f60 3px,#d09f60 6px)"></span>오크</div>
+          <div class="sw" data-color="월넛"><span class="dot" style="background:repeating-linear-gradient(118deg,#7d4f2c,#7d4f2c 3px,#693f21 3px,#693f21 6px)"></span>월넛</div>
+          <div class="sw" data-color="애쉬"><span class="dot" style="background:repeating-linear-gradient(118deg,#e4d5bc,#e4d5bc 3px,#d7c5a7 3px,#d7c5a7 6px)"></span>애쉬</div>
+          <div class="sw" data-color="화이트"><span class="dot" style="background:#ffffff"></span>화이트</div>
+          <div class="sw" data-color="블랙"><span class="dot" style="background:#1c1c1c"></span>블랙</div>
+          <div class="sw" data-color="네이비"><span class="dot" style="background:#243a5e"></span>네이비</div>
+          <div class="sw" data-color="그레이"><span class="dot" style="background:#8d8d8d"></span>그레이</div>
+        </div>
+      </div>
+
+      <!-- 사이즈 -->
+      <div class="fsec">
+        <h4>사이즈</h4>
+        <div class="checks">
+          <label class="check"><input type="checkbox" value="1600~1800" checked> 1600~1800</label>
+          <label class="check"><input type="checkbox" value="1800~2400"> 1800~2400</label>
+          <label class="check"><input type="checkbox" value="2400이상"> 2400 이상</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-foot">
+      <button class="btn-reset" id="filterReset">초기화</button>
+      <button class="btn-apply" id="filterApply">적용하기</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Cart Login Notice ===== -->
+<div class="modal-overlay" id="cartNotice">
+  <div class="notice-box">
+    <div class="n-ic">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+      </svg>
+    </div>
+    <h3>로그인이 필요합니다</h3>
+    <p>장바구니는 로그인 후<br>이용하실 수 있습니다.</p>
+    <div class="notice-btns">
+      <button class="btn-reset" id="noticeClose">닫기</button>
+      <button class="btn-apply" id="noticeLogin">로그인</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const products = [
+    ["조지아 모던 거실장 2800","1,090,000"],
+    ["켄싱턴 오크 거실장 2800","1,390,000"],
+    ["켄싱턴 월넛 거실장 2800","2,180,000"],
+    ["아폴로 월넛 거실장 2800","2,230,000"],
+    ["보스턴 월넛 거실장 2800","2,320,000"],
+    ["휴스턴 오크 거실장","1,300,000"],
+    ["드보르 오크 거실장","1,290,000"],
+    ["마르세유 그랜드 거실장","1,050,000"],
+    ["마르세유 로우 거실장","910,000"],
+    ["마르세유 스위트 거실장","1,090,000"],
+    ["시애틀 월넛 거실장 2600","2,140,000"],
+    ["시애틀 오크 거실장 2600","1,390,000"],
+    ["버클리 월넛 거실장 2600","2,140,000"],
+    ["제우스 월넛 거실장","2,050,000"],
+    ["윌리엄 월넛 거실장","2,520,000"],
+    ["나폴리 룩 오크 거실장","1,470,000"],
+    ["나폴리 오크 거실장","1,630,000"],
+    ["나폴리 월넛 거실장","2,370,000"],
+    ["나폴리 러블리 거실장","980,000"],
+    ["피렌체 엘더 거실장","1,140,000"],
+  ];
+  const grid=document.getElementById("grid");
+  // 각 제품에 원래 이미지 번호 보존
+  const allProducts=products.map((p,i)=>({name:p[0],price:p[1],img:i+1}));
+
+  function cardHTML(p){
+    return `<div class="card">
+      <div class="thumb"><img src="images/sub_item${p.img}.png" alt="${p.name}" loading="lazy"></div>
+      <div class="info">
+        <div class="name">${p.name}</div>
+        <div class="price">₩ ${p.price}</div>
+        <div class="btns">
+          <button class="btn-detail">자세히 보기</button>
+          <button class="btn-cart">장바구니 담기</button>
+        </div>
+      </div>
+    </div>`;
+  }
+  function renderGrid(list){
+    if(list.length===0){
+      grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:70px 0;color:#9a9082;font-size:15px;">검색 결과가 없습니다.</div>`;
+    }else{
+      grid.innerHTML=list.map(cardHTML).join("");
+    }
+  }
+  renderGrid(allProducts);
+
+  // 검색: Enter 또는 돋보기 클릭 시 실행. 공백으로 나눈 모든 키워드가 제품명에 포함되면 표시
+  const searchInput=document.getElementById("searchInput");
+  function runSearch(){
+    const tokens=searchInput.value.trim().split(/\s+/).filter(Boolean);
+    if(tokens.length===0){ renderGrid(allProducts); return; }
+    const filtered=allProducts.filter(p=>tokens.every(t=>p.name.includes(t)));
+    renderGrid(filtered);
+  }
+  searchInput.addEventListener("keydown",e=>{ if(e.key==="Enter") runSearch(); });
+  document.getElementById("searchBtn").addEventListener("click",runSearch);
+
+  // 장바구니 버튼 → 로그인 안내창
+  const cartNotice=document.getElementById("cartNotice");
+  grid.addEventListener("click",e=>{
+    if(e.target.closest(".btn-cart")){
+      cartNotice.classList.add("open");
+      document.body.style.overflow="hidden";
+    }
+  });
+  const closeNotice=()=>{ cartNotice.classList.remove("open"); document.body.style.overflow=""; };
+  document.getElementById("noticeClose").addEventListener("click",closeNotice);
+  document.getElementById("noticeLogin").addEventListener("click",()=>{ location.href="login.html?return=living-room.html"; });
+  cartNotice.addEventListener("click",e=>{ if(e.target===cartNotice) closeNotice(); });
+  document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&cartNotice.classList.contains("open")) closeNotice(); });
+
+  /* ===== 로그인 상태 표시 ===== */
+  (function(){
+    const user=localStorage.getItem("hb_user");
+    if(user){
+      document.getElementById("userName").textContent=user;
+      document.getElementById("utilGuest").style.display="none";
+      document.getElementById("utilUser").style.display="inline-flex";
+    }
+    document.getElementById("logoutLink").addEventListener("click",e=>{
+      e.preventDefault();
+      localStorage.removeItem("hb_user");
+      location.reload();
+    });
+  })();
+
+  document.querySelectorAll(".chip").forEach(c=>c.addEventListener("click",()=>{
+    document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));
+    c.classList.add("active");
+  }));
+
+  document.querySelectorAll(".pager a").forEach(p=>p.addEventListener("click",(e)=>{
+    e.preventDefault();
+    document.querySelectorAll(".pager a").forEach(x=>x.classList.remove("active"));
+    p.classList.add("active");
+    window.scrollTo({top:0,behavior:"smooth"});
+  }));
+
+  /* ===== Filter Modal ===== */
+  const modal=document.getElementById("filterModal");
+  const openModal=()=>{modal.classList.add("open");document.body.style.overflow="hidden";updateFill();};
+  const closeModal=()=>{modal.classList.remove("open");document.body.style.overflow="";};
+  document.getElementById("filterBtn").addEventListener("click",openModal);
+  document.getElementById("modalClose").addEventListener("click",closeModal);
+  modal.addEventListener("click",e=>{if(e.target===modal)closeModal();});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"&&modal.classList.contains("open"))closeModal();});
+
+  // dual range slider
+  const MAX=5000000;
+  const minR=document.getElementById("minRange"), maxR=document.getElementById("maxRange");
+  const fill=document.getElementById("psFill");
+  const minIn=document.getElementById("minInput"), maxIn=document.getElementById("maxInput");
+  const fmt=n=>(+n).toLocaleString();
+  function updateFill(){
+    let a=+minR.value, b=+maxR.value;
+    fill.style.left=(a/MAX*100)+"%";
+    fill.style.width=((b-a)/MAX*100)+"%";
+  }
+  minR.addEventListener("input",()=>{
+    if(+minR.value> +maxR.value) minR.value=maxR.value;
+    minIn.value=fmt(minR.value); updateFill();
+  });
+  maxR.addEventListener("input",()=>{
+    if(+maxR.value< +minR.value) maxR.value=minR.value;
+    maxIn.value=fmt(maxR.value); updateFill();
+  });
+  function syncFromInput(input,range,isMin){
+    let v=parseInt(input.value.replace(/[^0-9]/g,''))||0;
+    v=Math.max(0,Math.min(v,MAX));
+    if(isMin) v=Math.min(v,+maxR.value); else v=Math.max(v,+minR.value);
+    range.value=v; input.value=fmt(v); updateFill();
+  }
+  function liveComma(input){
+    const digits=input.value.replace(/[^0-9]/g,'');
+    input.value = digits==='' ? '' : parseInt(digits,10).toLocaleString();
+  }
+  minIn.addEventListener("input",()=>liveComma(minIn));
+  maxIn.addEventListener("input",()=>liveComma(maxIn));
+  minIn.addEventListener("change",()=>syncFromInput(minIn,minR,true));
+  maxIn.addEventListener("change",()=>syncFromInput(maxIn,maxR,false));
+
+  // color swatches
+  document.querySelectorAll("#swatches .sw").forEach(sw=>sw.addEventListener("click",()=>sw.classList.toggle("sel")));
+
+  // reset
+  document.getElementById("filterReset").addEventListener("click",()=>{
+    modal.querySelector('input[name="sort"][value="new"]').checked=true;
+    modal.querySelector('input[name="colorType"][value="all"]').checked=true;
+    minR.value=0; maxR.value=MAX; minIn.value="0"; maxIn.value=fmt(MAX); updateFill();
+    document.querySelectorAll("#swatches .sw").forEach(s=>s.classList.remove("sel"));
+    modal.querySelectorAll('.check input').forEach(c=>c.checked=false);
+  });
+
+  // apply
+  document.getElementById("filterApply").addEventListener("click",closeModal);
+
+  updateFill();
+</script>
+</body>
+</html>

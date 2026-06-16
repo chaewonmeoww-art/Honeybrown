@@ -19,16 +19,29 @@
         <img src="images/logo_1.png" alt="honeybrown" />
       </a>
       <nav class="gnb">
-        <a href="#">거실공간</a>
+        <a href="living-room.html">거실공간</a>
         <a href="#">주방공간</a>
         <a href="#">침실공간</a>
         <a href="#">스터디공간</a>
         <a href="#">월넛/오크가구</a>
         <a href="#">개인결제</a>
       </nav>
-      <div class="header__util">
-        <a href="#">로그인</a>
-        <a href="#">회원가입</a>
+      <div class="header__util" id="util">
+        <span class="util-group" id="utilGuest">
+          <a href="login.html?return=index.html">로그인</a>
+          <span class="sep">|</span>
+          <a href="#">회원가입</a>
+          <span class="sep">|</span>
+        </span>
+        <span class="util-group" id="utilUser" style="display:none">
+          <span class="greet">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+            반가워요 <b id="userName"></b>님!
+          </span>
+          <span class="sep">|</span>
+          <a href="#" id="logoutLink">로그아웃</a>
+          <span class="sep">|</span>
+        </span>
         <a href="#" class="cart">장바구니 <span class="cart__count">0</span></a>
       </div>
     </div>
@@ -227,5 +240,20 @@
     </div>
   </footer>
 
+  <script>
+    (function(){
+      var user = localStorage.getItem("hb_user");
+      if(user){
+        document.getElementById("userName").textContent = user;
+        document.getElementById("utilGuest").style.display = "none";
+        document.getElementById("utilUser").style.display = "inline-flex";
+      }
+      document.getElementById("logoutLink").addEventListener("click", function(e){
+        e.preventDefault();
+        localStorage.removeItem("hb_user");
+        location.reload();
+      });
+    })();
+  </script>
 </body>
 </html>

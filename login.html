@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>로그인 | honeybrown</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f4efe8;--brown:#6f5135;--brown-dark:#5c4129;--ink:#2b2520;--muted:#9a9082;--line:#e6ddd0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;background:var(--bg);color:var(--ink);
+       min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;-webkit-font-smoothing:antialiased;}
+  .login-card{background:#fff;width:100%;max-width:400px;border-radius:18px;padding:48px 38px 40px;
+              box-shadow:0 24px 60px rgba(70,50,25,.14);text-align:center;}
+  .login-logo{height:40px;margin:0 auto 26px;}
+  .login-card h1{font-size:23px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px;}
+  .login-card .sub{font-size:14px;color:var(--muted);margin-bottom:30px;line-height:1.6;}
+  .field-label{display:block;text-align:left;font-size:13px;font-weight:600;color:#5a5247;margin-bottom:9px;}
+  .nick-input{width:100%;border:1px solid var(--line);border-radius:10px;padding:15px 16px;font-size:15px;
+              font-family:inherit;outline:none;background:#fbf8f3;color:var(--ink);transition:.2s;}
+  .nick-input:focus{border-color:var(--brown);background:#fff;}
+  .nick-input::placeholder{color:#bdb3a4;}
+  .err{text-align:left;font-size:12.5px;color:#c0563f;margin-top:8px;min-height:16px;}
+  .login-btn{width:100%;background:var(--brown);color:#fff;border:none;border-radius:10px;
+             padding:15px 0;font-size:16px;font-weight:700;font-family:inherit;cursor:pointer;margin-top:6px;transition:.2s;}
+  .login-btn:hover{background:var(--brown-dark);}
+  .note{font-size:12px;color:#b3a99b;margin-top:18px;line-height:1.6;}
+  .back{display:inline-block;margin-top:22px;font-size:13px;color:var(--muted);text-decoration:none;}
+  .back:hover{color:var(--brown);}
+</style>
+</head>
+<body>
+  <div class="login-card">
+    <img src="images/logo_1.png" alt="honeybrown" class="login-logo">
+    <h1>로그인</h1>
+    <p class="sub">닉네임을 입력하고 허니브라운을 시작해보세요.</p>
+
+    <form id="loginForm">
+      <label class="field-label" for="nick">닉네임</label>
+      <input type="text" id="nick" class="nick-input" placeholder="사용하실 닉네임을 입력하세요" autocomplete="off" maxlength="16">
+      <div class="err" id="err"></div>
+      <button type="submit" class="login-btn">로그인</button>
+    </form>
+
+    <p class="note">※ 임시 로그인입니다. 입력한 닉네임이<br>화면 상단에 "반가워요 OOO님!"으로 표시됩니다.</p>
+    <a href="index.html" class="back">&larr; 메인으로 돌아가기</a>
+  </div>
+
+<script>
+  // 안전한 이동 경로만 허용
+  const allowed = {"index.html":1,"living-room.html":1};
+  const params = new URLSearchParams(location.search);
+  let ret = params.get("return");
+  if(!allowed[ret]) ret = "index.html";
+
+  const form = document.getElementById("loginForm");
+  const nick = document.getElementById("nick");
+  const err = document.getElementById("err");
+  nick.focus();
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    const v = nick.value.trim();
+    if(!v){ err.textContent = "닉네임을 입력해주세요."; nick.focus(); return; }
+    localStorage.setItem("hb_user", v);
+    location.href = ret;
+  });
+  nick.addEventListener("input", ()=>{ err.textContent = ""; });
+</script>
+</body>
+</html>
