@@ -44,13 +44,12 @@
       <button type="submit" class="login-btn">로그인</button>
     </form>
 
-    <p class="note">※ 임시 로그인입니다. 입력한 닉네임이<br>화면 상단에 "반가워요 OOO님!"으로 표시됩니다.</p>
     <a href="index.html" class="back">&larr; 메인으로 돌아가기</a>
   </div>
 
 <script>
   // 안전한 이동 경로만 허용
-  const allowed = {"index.html":1,"living-room.html":1};
+  const allowed = {"index.html":1,"living-room.html":1,"kitchen.html":1};
   const params = new URLSearchParams(location.search);
   let ret = params.get("return");
   if(!allowed[ret]) ret = "index.html";
