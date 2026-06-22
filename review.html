@@ -7,9 +7,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+<link rel="stylesheet" href="font.css">
 <style>
   :root{
-    --bg:#f4efe8;
+    --bg:#f7f4ef;
     --cream:#efe7db;
     --brown:#6f5135;
     --brown-dark:#5c4129;
@@ -22,7 +23,7 @@
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   body{
-    font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;
+    font-family:'A2z','Pretendard','Apple SD Gothic Neo',sans-serif;
     background:var(--bg);
     color:var(--ink);
     -webkit-font-smoothing:antialiased;
@@ -61,9 +62,9 @@
   .hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(244,240,233,0) 42%,rgba(244,240,233,.82) 60%,#f1ebe1 74%);}
   .hero-inner{position:relative;max-width:1180px;height:100%;margin:0 auto;display:flex;justify-content:flex-end;align-items:center;padding:0 24px;}
   .hero-text{width:38%;min-width:300px;padding-left:24px;}
-  .hero-text .small{font-size:16px;color:#5a5247;margin-bottom:6px;}
+  .hero-text .small{font-size:16px;color:#2b2520;font-weight:700;margin-bottom:6px;}
   .hero-text .mid{font-size:18px;color:#6a6053;margin-bottom:14px;}
-  .hero-text .big{font-size:38px;font-weight:800;color:var(--brown);letter-spacing:-1px;}
+  .hero-text .big{font-size:38px;font-weight:600;color:var(--brown);letter-spacing:-1px;}
 
   /* ===== Listing head ===== */
   .listing{padding:54px 0 80px;}
@@ -79,17 +80,15 @@
 
   /* ===== Review Grid ===== */
   .rgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px 24px;}
-  .rcard{background:var(--card);border:1px solid #efe7da;border-radius:10px;overflow:hidden;transition:transform .22s,box-shadow .22s;}
-  .rcard:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(90,70,45,.12);}
+  .rcard{background:var(--card);border:1px solid #efe7da;border-radius:10px;overflow:hidden;}
   .rthumb{aspect-ratio:4/3;overflow:hidden;background:#f1ece4;}
-  .rthumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;}
-  .rcard:hover .rthumb img{transform:scale(1.04);}
+  .rthumb img{width:100%;height:100%;object-fit:cover;}
   .rbody{padding:18px 18px 20px;}
   .rname{font-size:15px;font-weight:700;color:#332c24;margin-bottom:6px;letter-spacing:-.3px;}
   .rprice{font-size:14px;font-weight:600;color:#6b6054;margin-bottom:16px;}
   .rline{height:1px;background:var(--line);margin:0 0 16px;}
   .rmeta{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;}
-  .rbuyer{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#5a5247;}
+  .rbuyer{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:400;color:#5a5247;}
   .rbuyer .avatar{width:26px;height:26px;border-radius:50%;object-fit:cover;flex-shrink:0;display:block;}
   .rdate{font-size:12px;color:#b3a99b;}
   .rstars{color:var(--star);font-size:14px;letter-spacing:3px;margin-bottom:11px;}
