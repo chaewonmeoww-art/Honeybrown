@@ -38,7 +38,7 @@
   .logo .roof{width:34px;height:22px;}
   .logo-img{height:38px;width:auto;}
   .foot-logo{height:34px;}
-  .menu{display:flex;gap:34px;font-size:15px;font-weight:600;color:#4a443c;}
+  .menu{display:flex;flex:1;justify-content:center;gap:50px;font-size:15px;font-weight:600;color:#4a443c;}
   .menu a{position:relative;padding:6px 0;transition:color .2s;}
   .menu a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--brown);transform:scaleX(0);transform-origin:center;transition:transform .25s ease;}
   .menu a:hover{color:var(--brown);}
@@ -261,10 +261,9 @@
     <nav class="menu">
       <a href="living-room.html">거실공간</a>
       <a href="#" class="active">주방공간</a>
-      <a href="#">침실공간</a>
-      <a href="#">스터디공간</a>
-      <a href="#">월넛 / 오크가구</a>
-      <a href="#">개인결제</a>
+      <a href="bedroom.html">침실공간</a>
+      <a href="study.html">스터디공간</a>
+      <a href="review.html">상품후기</a>
     </nav>
     <div class="util" id="util">
       <span class="util-group" id="utilGuest">
@@ -332,7 +331,6 @@
       <a href="#" class="active">1</a>
       <a href="#">2</a>
       <a href="#">3</a>
-      <a href="#">4</a>
     </div>
   </div>
 </main>
@@ -577,8 +575,10 @@
   }
 
   function cartImg(it){
-    // 거실(sub_item)과 주방(sub2_item) 제품 구분
-    return it.page==="sub2" ? `images/sub2_item${it.img}.png` : `images/sub_item${it.img}.png`;
+    if(it.page==="sub2") return `images/sub2_item${it.img}.png`;
+    if(it.page==="sub3") return `images/sub3_item${it.img}.png`;
+    if(it.page==="sub4") return `images/sub4_item${it.img}.png`;
+    return `images/sub_item${it.img}.png`;
   }
 
   function renderCart(){
@@ -651,6 +651,7 @@
     document.getElementById("logoutLink").addEventListener("click",e=>{
       e.preventDefault();
       localStorage.removeItem("hb_user");
+      localStorage.removeItem("hb_cart");
       location.reload();
     });
   })();

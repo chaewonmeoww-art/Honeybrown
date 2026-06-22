@@ -9,6 +9,30 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="font.css" />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .best .cards .card{opacity:0;transform:translateY(48px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.61,.36,1);}
+    .best .cards .card.reveal{opacity:1;transform:translateY(0);}
+    .best .cards .card:nth-child(1){transition-delay:0s;}
+    .best .cards .card:nth-child(2){transition-delay:.18s;}
+    .best .cards .card:nth-child(3){transition-delay:.36s;}
+    @media (prefers-reduced-motion: reduce){
+      .best .cards .card{opacity:1;transform:none;transition:none;}
+    }
+
+    #sec-best,#sec-review,#sec-showroom,#sec-notice{scroll-margin-top:84px;}
+    .snav{position:fixed;right:22px;top:50%;transform:translateY(-50%);display:flex;align-items:stretch;gap:10px;z-index:90;height:52vh;max-height:440px;min-height:320px;}
+    .snav__rail{position:relative;width:14px;flex:0 0 14px;order:-1;}
+    .snav__line{position:absolute;left:50%;transform:translateX(-50%);width:2px;border-radius:2px;background:rgba(255,255,255,.9);box-shadow:0 0 3px rgba(120,100,80,.18);overflow:hidden;}
+    .snav__glow{position:absolute;left:50%;transform:translate(-50%,-50%);width:100%;height:110px;border-radius:2px;background:linear-gradient(to bottom,rgba(99,52,24,0) 0%,#633418 50%,rgba(99,52,24,0) 100%);transition:top .4s cubic-bezier(.4,0,.2,1);}
+    .snav__end{position:absolute;left:50%;transform:translate(-50%,-50%);width:12px;height:12px;border-radius:50%;background:#fff;border:1px solid #633418;box-shadow:0 2px 5px rgba(99,52,24,.22);z-index:2;}
+    .snav__dot{position:absolute;left:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:#633418;transition:top .4s cubic-bezier(.4,0,.2,1);z-index:3;}
+    .snav__labels{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;justify-content:space-between;}
+    .snav__labels button{font-family:inherit;font-weight:300;font-size:13px;letter-spacing:.05em;color:var(--text-soft);background:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.55);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);padding:6px 16px;border-radius:18px;cursor:pointer;transition:all .25s ease;box-shadow:0 2px 10px rgba(120,100,80,.08);white-space:nowrap;}
+    .snav__labels button:hover{color:#633418;background:rgba(255,255,255,.6);}
+    .snav__labels button.active{color:#633418;font-weight:700;background:rgba(255,255,255,.82);}
+    @media(max-width:1024px){.snav{right:12px;}.snav__labels button{font-size:12px;padding:5px 13px;}}
+    @media(max-width:900px){.snav{display:none;}}
+  </style>
 </head>
 <body>
 
@@ -21,10 +45,9 @@
       <nav class="gnb">
         <a href="living-room.html">거실공간</a>
         <a href="kitchen.html">주방공간</a>
-        <a href="#">침실공간</a>
-        <a href="#">스터디공간</a>
-        <a href="#">월넛/오크가구</a>
-        <a href="#">개인결제</a>
+        <a href="bedroom.html">침실공간</a>
+        <a href="study.html">스터디공간</a>
+        <a href="review.html">상품후기</a>
       </nav>
       <div class="header__util" id="util">
         <span class="util-group" id="utilGuest">
@@ -51,7 +74,7 @@
   </header>
 
   <!-- ===== HERO ===== -->
-  <section class="hero">
+  <section class="hero" id="hero">
     <div class="hero__bg active" style="background-image:url('images/main.png')"></div>
     <div class="hero__bg" style="background-image:url('images/main_2.png')"></div>
     <div class="hero__bg" style="background-image:url('images/main_3.png')"></div>
@@ -71,7 +94,7 @@
   </section>
 
   <!-- ===== BEST PRODUCT ===== -->
-  <section class="section best">
+  <section class="section best" id="sec-best">
     <div class="container">
       <p class="section__eyebrow">BEST PRODUCT</p>
       <div class="section__head">
@@ -120,7 +143,7 @@
   </section>
 
   <!-- ===== REVIEW ===== -->
-  <section class="review">
+  <section class="review" id="sec-review">
     <div class="container review__inner">
       <div class="review__copy">
         <p class="section__eyebrow">REVIEW</p>
@@ -159,7 +182,7 @@
   </section>
 
   <!-- ===== SHOWROOM ===== -->
-  <section class="section showroom">
+  <section class="section showroom" id="sec-showroom">
     <div class="container showroom__inner">
       <div class="showroom__copy">
         <p class="section__eyebrow">SHOWROOM</p>
@@ -191,7 +214,7 @@
   </section>
 
   <!-- ===== NOTICE / CONTACT ===== -->
-  <section class="section notice-area">
+  <section class="section notice-area" id="sec-notice">
     <div class="container notice-area__inner">
       <div class="notice">
         <p class="section__eyebrow notice__eyebrow">NOTICE</p>
@@ -233,6 +256,22 @@
     </div>
   </section>
 
+  <!-- ===== SECTION NAV ===== -->
+  <nav class="snav" aria-label="섹션 이동">
+    <div class="snav__rail">
+      <span class="snav__line" id="snavLine"><span class="snav__glow" id="snavGlow"></span></span>
+      <span class="snav__end" id="snavEnd"></span>
+      <span class="snav__dot" id="snavDot"></span>
+    </div>
+    <ul class="snav__labels">
+      <li><button type="button" data-target="hero">HOME</button></li>
+      <li><button type="button" data-target="sec-best">BEST</button></li>
+      <li><button type="button" data-target="sec-review">REVIEW</button></li>
+      <li><button type="button" data-target="sec-showroom">SHOWROOM</button></li>
+      <li><button type="button" data-target="sec-notice">NOTICE</button></li>
+    </ul>
+  </nav>
+
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="container footer__inner">
@@ -260,6 +299,7 @@
       document.getElementById("logoutLink").addEventListener("click", function(e){
         e.preventDefault();
         localStorage.removeItem("hb_user");
+        localStorage.removeItem("hb_cart");
         location.reload();
       });
       // 장바구니 개수 표시
@@ -292,6 +332,90 @@
         slides[i].classList.add("active");
         if(num) num.textContent = ("0" + (i + 1)).slice(-2);
       }, 3000);
+    })();
+
+    // BEST PRODUCT 카드 스크롤 등장 (왼쪽부터 순차)
+    (function(){
+      var cards = document.querySelectorAll(".best .cards .card");
+      if(!cards.length) return;
+      if(!("IntersectionObserver" in window)){
+        cards.forEach(function(c){ c.classList.add("reveal"); });
+        return;
+      }
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if(en.isIntersecting){
+            cards.forEach(function(c){ c.classList.add("reveal"); });
+            io.disconnect();
+          }
+        });
+      }, { threshold: 0.2 });
+      io.observe(document.querySelector(".best .cards"));
+    })();
+
+    // 섹션 이동 타임라인 네비게이션
+    (function(){
+      var nav = document.querySelector(".snav");
+      if(!nav) return;
+      var rail = nav.querySelector(".snav__rail");
+      var line = document.getElementById("snavLine");
+      var glow = document.getElementById("snavGlow");
+      var end = document.getElementById("snavEnd");
+      var dot = document.getElementById("snavDot");
+      var btns = Array.prototype.slice.call(nav.querySelectorAll(".snav__labels button"));
+      if(!btns.length) return;
+      var sections = [];
+
+      btns.forEach(function(b){
+        var sec = document.getElementById(b.dataset.target);
+        if(sec) sections.push(sec);
+        b.addEventListener("click", function(){
+          if(b.dataset.target === "hero"){
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          } else if(sec){
+            sec.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+
+      function centerY(el){
+        var rr = rail.getBoundingClientRect();
+        var br = el.getBoundingClientRect();
+        return br.top + br.height/2 - rr.top;
+      }
+      var firstY = 0;
+      function place(act){
+        var y = centerY(act);
+        dot.style.top = y + "px";
+        glow.style.top = (y - firstY) + "px";
+      }
+      function layout(){
+        firstY = centerY(btns[0]);
+        var last = centerY(btns[btns.length-1]);
+        line.style.top = firstY + "px";
+        line.style.height = (last - firstY) + "px";
+        end.style.top = last + "px";
+        place(nav.querySelector(".snav__labels button.active") || btns[0]);
+      }
+      function setActive(id){
+        btns.forEach(function(b){ b.classList.toggle("active", b.dataset.target === id); });
+        var act = nav.querySelector(".snav__labels button.active");
+        if(act) place(act);
+      }
+
+      btns[0].classList.add("active");
+      window.addEventListener("load", layout);
+      window.addEventListener("resize", layout);
+      layout();
+
+      if("IntersectionObserver" in window){
+        var io = new IntersectionObserver(function(entries){
+          entries.forEach(function(en){
+            if(en.isIntersecting) setActive(en.target.id);
+          });
+        }, { rootMargin: "-45% 0px -45% 0px", threshold: 0 });
+        sections.forEach(function(s){ io.observe(s); });
+      }
     })();
 
     // 리뷰 이미지 자동 슬라이드

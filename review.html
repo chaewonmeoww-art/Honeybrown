@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>상품후기 | honeybrown</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f4efe8;
+    --cream:#efe7db;
+    --brown:#6f5135;
+    --brown-dark:#5c4129;
+    --brown-soft:#8a6a47;
+    --ink:#2b2520;
+    --muted:#8c8378;
+    --line:#e6ddd0;
+    --card:#ffffff;
+    --star:#7a5a39;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  a{text-decoration:none;color:inherit;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+
+  /* ===== Header ===== */
+  header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px;}
+  .logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:22px;color:var(--brown);letter-spacing:-.5px;}
+  .logo-img{height:38px;width:auto;}
+  .foot-logo{height:34px;}
+  .menu{display:flex;flex:1;justify-content:center;gap:50px;font-size:15px;font-weight:600;color:#4a443c;}
+  .menu a{position:relative;padding:6px 0;transition:color .2s;}
+  .menu a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--brown);transform:scaleX(0);transform-origin:center;transition:transform .25s ease;}
+  .menu a:hover{color:var(--brown);}
+  .menu a:hover::after{transform:scaleX(1);}
+  .menu a.active{color:var(--brown);}
+  .menu a.active::after{transform:scaleX(1);}
+  .util{display:flex;align-items:center;gap:14px;font-size:13px;color:#6b6359;}
+  .util a:hover{color:var(--brown);}
+  .util .sep{color:#d8cebf;}
+  .util .cart{display:flex;align-items:center;gap:6px;}
+  .util-group{display:inline-flex;align-items:center;gap:14px;}
+  .util .greet{display:inline-flex;align-items:center;gap:6px;color:#6b6359;}
+  .util .greet b{font-weight:700;color:var(--brown);}
+  .util .greet svg{color:var(--brown);}
+  .badge-dot{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;border-radius:50%;background:var(--brown);color:#fff;font-size:11px;font-weight:700;padding:0 5px;}
+
+  /* ===== Hero ===== */
+  .hero{position:relative;height:300px;background:var(--cream);overflow:hidden;}
+  .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left center;}
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(244,240,233,0) 42%,rgba(244,240,233,.82) 60%,#f1ebe1 74%);}
+  .hero-inner{position:relative;max-width:1180px;height:100%;margin:0 auto;display:flex;justify-content:flex-end;align-items:center;padding:0 24px;}
+  .hero-text{width:38%;min-width:300px;padding-left:24px;}
+  .hero-text .small{font-size:16px;color:#5a5247;margin-bottom:6px;}
+  .hero-text .mid{font-size:18px;color:#6a6053;margin-bottom:14px;}
+  .hero-text .big{font-size:38px;font-weight:800;color:var(--brown);letter-spacing:-1px;}
+
+  /* ===== Listing head ===== */
+  .listing{padding:54px 0 80px;}
+  .l-title{display:flex;align-items:center;gap:12px;margin-bottom:34px;}
+  .l-title h2{font-size:26px;font-weight:800;letter-spacing:-.5px;}
+  .items-badge{background:var(--brown);color:#fff;font-size:12px;font-weight:600;padding:4px 11px;border-radius:14px;}
+  .head-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:34px;}
+  .head-row .l-title{margin-bottom:0;}
+  .search{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:10px 18px;width:300px;}
+  .search input{border:none;outline:none;flex:1;font-size:14px;background:transparent;color:var(--ink);font-family:inherit;}
+  .search input::placeholder{color:#b3a99b;}
+  .search svg{color:#9a9082;flex-shrink:0;}
+
+  /* ===== Review Grid ===== */
+  .rgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px 24px;}
+  .rcard{background:var(--card);border:1px solid #efe7da;border-radius:10px;overflow:hidden;transition:transform .22s,box-shadow .22s;}
+  .rcard:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(90,70,45,.12);}
+  .rthumb{aspect-ratio:4/3;overflow:hidden;background:#f1ece4;}
+  .rthumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;}
+  .rcard:hover .rthumb img{transform:scale(1.04);}
+  .rbody{padding:18px 18px 20px;}
+  .rname{font-size:15px;font-weight:700;color:#332c24;margin-bottom:6px;letter-spacing:-.3px;}
+  .rprice{font-size:14px;font-weight:600;color:#6b6054;margin-bottom:16px;}
+  .rline{height:1px;background:var(--line);margin:0 0 16px;}
+  .rmeta{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;}
+  .rbuyer{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#5a5247;}
+  .rbuyer .avatar{width:26px;height:26px;border-radius:50%;object-fit:cover;flex-shrink:0;display:block;}
+  .rdate{font-size:12px;color:#b3a99b;}
+  .rstars{color:var(--star);font-size:14px;letter-spacing:3px;margin-bottom:11px;}
+  .rtext{font-size:13px;color:#8c8378;line-height:1.75;}
+  .no-result{grid-column:1/-1;text-align:center;padding:80px 0;color:#9a9082;font-size:15px;}
+
+  /* ===== Pagination ===== */
+  .pager{display:flex;justify-content:center;gap:8px;margin-top:54px;}
+  .pager a{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:6px;font-size:14px;font-weight:600;color:#6b6359;background:#fff;transition:all .2s;}
+  .pager a:hover{border-color:var(--brown-soft);color:var(--brown);}
+  .pager a.active{background:var(--brown);border-color:var(--brown);color:#fff;}
+
+  /* ===== Footer ===== */
+  footer{background:#e7ddcd;color:#6f6557;font-size:12px;margin-top:10px;}
+  .foot{display:flex;gap:40px;padding:42px 0;align-items:flex-start;}
+  .foot .logo{font-size:20px;flex-shrink:0;}
+  .foot-info{line-height:1.9;}
+  .foot-info .row{margin-bottom:2px;}
+  .foot-info strong{color:#5c5347;font-weight:700;}
+  .copy{font-size:11px;color:#8a8072;margin-top:10px;}
+
+  /* ===== Modal base ===== */
+  .modal-overlay{position:fixed;inset:0;background:rgba(45,33,22,.46);display:none;align-items:center;justify-content:center;z-index:100;padding:24px;}
+  .modal-overlay.open{display:flex;}
+  .modal{background:#fbf8f3;width:100%;max-width:520px;max-height:90vh;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 30px 70px rgba(60,40,20,.32);animation:pop .26s ease;}
+  @keyframes pop{from{transform:translateY(16px);opacity:0}to{transform:none;opacity:1}}
+  .modal-head{display:flex;align-items:center;justify-content:space-between;padding:22px 28px;border-bottom:1px solid var(--line);}
+  .modal-head h3{font-size:23px;font-weight:800;letter-spacing:-.5px;}
+  .modal-close{background:none;border:none;cursor:pointer;color:#8a8076;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:8px;transition:.2s;}
+  .modal-close:hover{background:#efe7da;color:var(--brown);}
+  .modal-body{padding:0 28px;overflow-y:auto;}
+  .modal-foot{display:flex;gap:14px;padding:20px 28px;border-top:1px solid var(--line);}
+  .modal-foot button{font-family:inherit;font-size:16px;font-weight:700;padding:15px 0;border-radius:10px;cursor:pointer;transition:.2s;}
+  .btn-reset{flex:1;background:#fff;border:1px solid #d8cdbd;color:#6b6054;}
+  .btn-reset:hover{border-color:var(--brown);color:var(--brown);}
+  .btn-apply{flex:1.5;background:var(--brown);border:1px solid var(--brown);color:#fff;}
+  .btn-apply:hover{background:var(--brown-dark);}
+
+  /* ===== Cart Modal ===== */
+  .cart-modal{max-width:480px;}
+  .cart-body{padding:8px 28px;min-height:120px;}
+  .cart-empty{text-align:center;color:#9a9082;font-size:15px;padding:60px 0;}
+  .cart-item{display:flex;align-items:center;gap:14px;padding:18px 0;border-bottom:1px solid var(--line);}
+  .cart-item:last-child{border-bottom:none;}
+  .cart-item img{width:64px;height:64px;border-radius:8px;object-fit:cover;background:#f1ece4;flex-shrink:0;}
+  .ci-info{flex:1;min-width:0;}
+  .ci-name{font-size:14.5px;font-weight:700;color:#332c24;margin-bottom:5px;}
+  .ci-price{font-size:14px;color:#6b6054;}
+  .ci-qty{display:flex;align-items:center;gap:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;flex-shrink:0;}
+  .ci-qty button{width:30px;height:30px;border:none;background:#fff;color:#6b6054;font-size:16px;cursor:pointer;transition:.15s;}
+  .ci-qty button:hover{background:#efe7da;color:var(--brown);}
+  .ci-qty span{min-width:32px;text-align:center;font-size:14px;font-weight:600;}
+  .ci-remove{background:none;border:none;color:#bdb3a4;font-size:20px;cursor:pointer;width:28px;height:28px;border-radius:6px;flex-shrink:0;transition:.15s;}
+  .ci-remove:hover{background:#efe7da;color:#b5563f;}
+  .cart-foot{justify-content:space-between;align-items:center;}
+  .cart-total{display:flex;flex-direction:column;gap:2px;}
+  .cart-total span{font-size:12.5px;color:#9a9082;}
+  .cart-total strong{font-size:20px;font-weight:800;color:var(--brown);}
+  .cart-foot .btn-apply{flex:0 0 auto;padding:14px 38px;}
+
+  /* ===== Toast ===== */
+  .toast{position:fixed;left:50%;bottom:38px;transform:translateX(-50%) translateY(20px);background:#3a2e22;color:#fff;padding:13px 26px;border-radius:30px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:.3s;z-index:200;box-shadow:0 10px 30px rgba(40,28,18,.3);}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  /* ===== Login Notice ===== */
+  .notice-box{background:#fbf8f3;width:100%;max-width:360px;border-radius:16px;padding:36px 28px 26px;text-align:center;box-shadow:0 30px 70px rgba(60,40,20,.32);animation:pop .26s ease;}
+  .notice-box .n-ic{width:56px;height:56px;border-radius:50%;background:#efe7da;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;color:var(--brown);}
+  .notice-box h3{font-size:20px;font-weight:800;margin-bottom:10px;letter-spacing:-.5px;}
+  .notice-box p{font-size:14.5px;color:#8c8378;line-height:1.65;margin-bottom:24px;}
+  .notice-btns{display:flex;gap:10px;}
+  .notice-btns button{flex:1;font-family:inherit;font-size:15px;font-weight:700;padding:13px 0;border-radius:9px;cursor:pointer;transition:.2s;}
+
+  /* ===== Hamburger ===== */
+  .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;margin-left:8px;background:none;border:none;cursor:pointer;}
+  .hamburger span{display:block;width:22px;height:2px;margin:0 auto;background:var(--brown);border-radius:2px;transition:.25s;}
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  @media(max-width:1024px){
+    .rgrid{grid-template-columns:repeat(3,1fr);}
+  }
+  @media(max-width:900px){
+    .hamburger{display:flex;}
+    .util{margin-left:auto;gap:10px;}
+    .util-group{display:none !important;}
+    .menu{position:absolute;top:74px;left:0;right:0;flex-direction:column;gap:0;background:#fff;padding:6px 0;border-bottom:1px solid var(--line);box-shadow:0 14px 26px rgba(70,50,25,.10);display:none;}
+    .menu.open{display:flex;}
+    .menu a{padding:14px 24px;font-size:15px;}
+    .menu a::after{display:none;}
+    .hero{height:260px;}
+    .hero-text{width:60%;min-width:0;}
+    .hero-text .big{font-size:30px;}
+    .hero-overlay{background:linear-gradient(90deg,rgba(244,240,233,.15),rgba(244,240,233,.88) 52%,#f1ebe1 72%);}
+  }
+  @media(max-width:720px){
+    .rgrid{grid-template-columns:repeat(2,1fr);}
+    .search{width:100%;}
+    .head-row{flex-direction:column;align-items:flex-start;}
+    .foot{flex-direction:column;gap:18px;}
+    .listing{padding:40px 0 60px;}
+  }
+  @media(max-width:480px){
+    .rgrid{grid-template-columns:1fr;gap:18px;}
+    .hero{height:210px;}
+    .hero-text{width:74%;}
+    .hero-text .big{font-size:24px;}
+    .hero-text .small{font-size:13px;}
+    .hero-text .mid{font-size:14px;}
+    .l-title h2{font-size:22px;}
+    .cart-modal{max-width:none;}
+    .modal-body{padding:0 20px;}
+    .modal-head,.modal-foot{padding:18px 20px;}
+    .cart-foot{flex-wrap:wrap;gap:14px;}
+    .cart-foot .btn-apply{flex:1 0 100%;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="index.html"><img src="images/logo_1.png" alt="honeybrown" class="logo-img"></a>
+    <nav class="menu">
+      <a href="living-room.html">거실공간</a>
+      <a href="kitchen.html">주방공간</a>
+      <a href="bedroom.html">침실공간</a>
+      <a href="study.html">스터디공간</a>
+      <a href="review.html" class="active">상품후기</a>
+    </nav>
+    <div class="util" id="util">
+      <span class="util-group" id="utilGuest">
+        <a href="login.html?return=review.html" class="txt">로그인</a><span class="sep txt">|</span>
+        <a href="#" class="txt">회원가입</a><span class="sep txt">|</span>
+      </span>
+      <span class="util-group" id="utilUser" style="display:none">
+        <span class="greet">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+          반가워요 <b id="userName"></b>님!
+        </span><span class="sep">|</span>
+        <a href="#" id="logoutLink">로그아웃</a><span class="sep">|</span>
+      </span>
+      <a href="#" class="cart" id="cartBtn">장바구니 <span class="badge-dot" id="cartCount">0</span></a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="메뉴 열기">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <img src="images/sub_hero.png" alt="" class="hero-bg">
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="small">공간을 완성하는 특별한 선택</div>
+      <div class="mid">프리미엄 수제 원목가구</div>
+      <div class="big">허니브라운 가구</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Listing ===== -->
+<main class="listing">
+  <div class="wrap">
+    <div class="head-row">
+      <div class="l-title">
+        <h2>상품후기</h2>
+        <span class="items-badge" id="reviewBadge">48 review</span>
+      </div>
+    </div>
+
+    <div class="rgrid" id="rgrid"></div>
+
+    <div class="pager">
+      <a href="#" class="active">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <a href="#">4</a>
+    </div>
+  </div>
+</main>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="wrap foot">
+    <a class="logo" href="index.html"><img src="images/logo_1.png" alt="honeybrown" class="logo-img foot-logo"></a>
+    <div class="foot-info">
+      <div class="row"><strong>상호</strong> 허니브라운 &nbsp;&nbsp; <strong>대표</strong> 박정아, 박경헌 &nbsp;&nbsp; <strong>사업자 등록번호</strong> 120 - 12 -18791</div>
+      <div class="row"><strong>주소</strong> 06339 서울특별시 강남구 개포로 660 (일원동) 충미빌딩 1층 허니브라운 &nbsp;&nbsp; <strong>대표전화</strong> 02 - 6221 -0857</div>
+      <div class="row"><strong>통신판매업 신고</strong> 제 2014 - 서울강남 - 01190호 &nbsp;&nbsp; <strong>개인정보관리책임자</strong> 박경헌 &nbsp;&nbsp; <strong>이메일</strong> honeybrown_@naver.com</div>
+      <div class="row">Hosting by CAFE24</div>
+      <div class="copy">COPYRIGHT © 허니브라운가구 ALL RIGHTS RESERVED.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== Login Notice ===== -->
+<div class="modal-overlay" id="cartNotice">
+  <div class="notice-box">
+    <div class="n-ic">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+      </svg>
+    </div>
+    <h3>로그인이 필요합니다</h3>
+    <p>장바구니는 로그인 후<br>이용하실 수 있습니다.</p>
+    <div class="notice-btns">
+      <button class="btn-reset" id="noticeClose">닫기</button>
+      <button class="btn-apply" id="noticeLogin">로그인</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Cart Modal ===== -->
+<div class="modal-overlay" id="cartModal">
+  <div class="modal cart-modal" role="dialog" aria-modal="true" aria-label="장바구니">
+    <div class="modal-head">
+      <h3>장바구니</h3>
+      <button class="modal-close" id="cartClose" aria-label="닫기">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body cart-body" id="cartBody"></div>
+    <div class="modal-foot cart-foot" id="cartFoot">
+      <div class="cart-total"><span>총 결제금액</span><strong id="cartTotal">₩ 0</strong></div>
+      <button class="btn-apply" id="checkoutBtn">주문하기</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  /* ===== Review data ===== */
+  // [제품명, 가격, 구매자, 날짜, 별점, 후기, 이미지번호]
+  const reviews = [
+    ["라볼드 로얄 캐비넷","1,340,000","구매자 김**님","2026.06.01",5,"사진보다 실물이 더 고급스럽네요. 네이비 컬러와 원목 상판 조합이 정말 만족스럽습니다.",1],
+    ["리브 타일러 멀티 캐비넷","1,290,000","구매자 윤**님","2026.05.28",5,"식탁 옆에 배치했는데 주방 분위기가 확 달라졌어요. 자주 사용하는 그릇들을 꺼내기 편하고 유리장이라 답답해 보이지 않아 만족합니다.",2],
+    ["시애틀 월넛 거실장 2600","2,140,000","구매자 박**님","2026.05.28",5,"어두운 월넛 컬러가 부담스럽지 않고 오히려 공간을 더 안정감 있게 만들어주네요. 집에 오면 가장 먼저 눈에 들어오는 가구입니다.",3],
+    ["앤틱리 젠틀 책장 세트","1,980,000","구매자 김**님","2026.05.25",5,"서재에 들여놓으려고 구매했는데 생각보다 더 튼튼하고 고급스럽네요. 책뿐만 아니라 소품까지 정리하기 좋아서 만족합니다.",4],
+    ["에이슬 올인 북 캐비넷","980,000","구매자 진**님","2026.05.15",5,"자주 보는 책은 오픈 공간에 두고, 잡동사니는 아래 수납장에 넣어두니 깔끔해졌어요. 공부할 때도 집중이 더 잘 되는 것 같습니다.",5],
+    ["블랙시크 테이블 세트","940,000","구매자 강**님","2026.05.15",5,"책상 크기가 넉넉해서 노트북, 책, 필기구를 올려놔도 여유가 있어요. 공부할 때 훨씬 집중이 잘 됩니다.",6],
+    ["윌리엄 월넛 거실장","2,520,000","구매자 박**님","2026.05.13",5,"TV장 하나 바꿨을 뿐인데 거실 분위기가 훨씬 고급스러워졌어요. 월넛 색감이 정말 예쁘고 공간이 한층 차분해 보입니다.",7],
+    ["엘르파닝 오크 서랍장","1,560,000","구매자 양**님","2026.05.11",5,"서랍이 넓고 깊어서 계절 옷이나 생활용품 정리하기 편해요. 디자인도 깔끔해서 오래 사용할 것 같습니다.",8],
+    ["레베카 와이드 장식장","1,180,000","구매자 이**님","2026.05.11",5,"수납공간이 넉넉해서 그릇, 컵, 식재료까지 깔끔하게 정리할 수 있어요. 주방 정리가 한결 쉬워졌습니다.",9],
+    ["나폴리 러블리 거실장","980,000","구매자 강**님","2026.05.10",5,"사진보다 실물이 더 예뻐요. 무게감 있는 컬러 덕분에 거실이 한층 고급스러워 보입니다.",10],
+    ["네이처 모던 볼 캐비넷","1,100,000","구매자 양**님","2026.05.09",5,"주방 한쪽에 배치했는데 카페 같은 분위기가 나요. 자주 사용하는 식기들을 꺼내 쓰기 편해서 실용적입니다.",11],
+    ["앤젤리나 월넛 서랍장","2,400,000","구매자 양**님","2026.05.06",5,"서랍이 길고 넓어서 계절 옷이나 침구류 정리하기 좋아요. 디자인도 깔끔해서 오래 사용할 것 같습니다.",12],
+  ];
+
+  const grid=document.getElementById("rgrid");
+  const allReviews=reviews.map(r=>({name:r[0],price:r[1],buyer:r[2],date:r[3],stars:r[4],text:r[5],img:r[6]}));
+
+  const avatarSVG=`<img class="avatar" src="images/review_sub_icon.png" alt="">`;
+  function starHTML(n){ return "★".repeat(n)+"☆".repeat(5-n); }
+
+  function cardHTML(r){
+    return `<article class="rcard">
+      <div class="rthumb"><img src="images/review_${String(r.img).padStart(2,'0')}.png" alt="${r.name}" loading="lazy"></div>
+      <div class="rbody">
+        <div class="rname">${r.name}</div>
+        <div class="rprice">₩ ${r.price}</div>
+        <div class="rline"></div>
+        <div class="rmeta">
+          <span class="rbuyer">${avatarSVG}${r.buyer}</span>
+          <span class="rdate">${r.date}</span>
+        </div>
+        <div class="rstars">${starHTML(r.stars)}</div>
+        <p class="rtext">${r.text}</p>
+      </div>
+    </article>`;
+  }
+  function renderGrid(list){
+    grid.innerHTML = list.length
+      ? list.map(cardHTML).join("")
+      : `<div class="no-result">검색 결과가 없습니다.</div>`;
+  }
+  renderGrid(allReviews);
+  const badge=document.getElementById("reviewBadge");
+
+  /* ===== Pagination (page 1 has live reviews) ===== */
+  document.querySelectorAll(".pager a").forEach(p=>p.addEventListener("click",e=>{
+    e.preventDefault();
+    document.querySelectorAll(".pager a").forEach(x=>x.classList.remove("active"));
+    p.classList.add("active");
+    if(p.textContent.trim()==="1"){
+      renderGrid(allReviews); badge.textContent="48 review";
+    }else{
+      grid.innerHTML=`<div class="no-result">준비 중인 페이지입니다.</div>`;
+    }
+    window.scrollTo({top:0,behavior:"smooth"});
+  }));
+
+  /* ===== Login state ===== */
+  (function(){
+    const user=localStorage.getItem("hb_user");
+    if(user){
+      document.getElementById("userName").textContent=user;
+      document.getElementById("utilGuest").style.display="none";
+      document.getElementById("utilUser").style.display="inline-flex";
+    }
+    const lo=document.getElementById("logoutLink");
+    if(lo) lo.addEventListener("click",e=>{ e.preventDefault(); localStorage.removeItem("hb_user"); localStorage.removeItem("hb_cart"); location.reload(); });
+  })();
+
+  /* ===== Cart ===== */
+  const cartModal=document.getElementById("cartModal");
+  const cartBody=document.getElementById("cartBody");
+  const cartFoot=document.getElementById("cartFoot");
+  const cartCountEl=document.getElementById("cartCount");
+  const cartNotice=document.getElementById("cartNotice");
+
+  function getCart(){ try{return JSON.parse(localStorage.getItem("hb_cart"))||[];}catch(e){return [];} }
+  function priceNum(s){ return parseInt(String(s).replace(/[^0-9]/g,''))||0; }
+  function won(n){ return "₩ "+n.toLocaleString(); }
+  function saveCart(c){ localStorage.setItem("hb_cart",JSON.stringify(c)); }
+  function updateBadge(){ cartCountEl.textContent=getCart().reduce((s,i)=>s+i.qty,0); }
+
+  function cartImg(it){
+    if(it.page==="sub2") return `images/sub2_item${it.img}.png`;
+    if(it.page==="sub3") return `images/sub3_item${it.img}.png`;
+    if(it.page==="sub4") return `images/sub4_item${it.img}.png`;
+    return `images/sub_item${it.img}.png`;
+  }
+  function renderCart(){
+    const c=getCart();
+    if(c.length===0){
+      cartBody.innerHTML='<div class="cart-empty">장바구니가 비어 있습니다.</div>';
+      cartFoot.style.display="none"; return;
+    }
+    cartFoot.style.display="flex";
+    cartBody.innerHTML=c.map(it=>`
+      <div class="cart-item" data-name="${it.name}">
+        <img src="${cartImg(it)}" alt="">
+        <div class="ci-info">
+          <div class="ci-name">${it.name}</div>
+          <div class="ci-price">${won(priceNum(it.price)*it.qty)}</div>
+        </div>
+        <div class="ci-qty">
+          <button data-act="dec" aria-label="수량 감소">−</button>
+          <span>${it.qty}</span>
+          <button data-act="inc" aria-label="수량 증가">+</button>
+        </div>
+        <button class="ci-remove" data-act="remove" aria-label="삭제">×</button>
+      </div>`).join("");
+    const total=c.reduce((s,it)=>s+priceNum(it.price)*it.qty,0);
+    document.getElementById("cartTotal").textContent=won(total);
+  }
+  const openCart=()=>{ renderCart(); cartModal.classList.add("open"); document.body.style.overflow="hidden"; };
+  const closeCart=()=>{ cartModal.classList.remove("open"); document.body.style.overflow=""; };
+  document.getElementById("cartBtn").addEventListener("click",e=>{ e.preventDefault(); openCart(); });
+  document.getElementById("cartClose").addEventListener("click",closeCart);
+  cartModal.addEventListener("click",e=>{ if(e.target===cartModal) closeCart(); });
+
+  cartBody.addEventListener("click",e=>{
+    const b=e.target.closest("[data-act]"); if(!b) return;
+    const name=e.target.closest(".cart-item").dataset.name;
+    const c=getCart(); const i=c.findIndex(x=>x.name===name); if(i<0) return;
+    const act=b.dataset.act;
+    if(act==="inc") c[i].qty++;
+    else if(act==="dec"){ c[i].qty--; if(c[i].qty<=0) c.splice(i,1); }
+    else if(act==="remove") c.splice(i,1);
+    saveCart(c); updateBadge(); renderCart();
+  });
+  document.getElementById("checkoutBtn").addEventListener("click",()=>{ toast("주문 기능은 준비 중입니다."); });
+
+  const closeNotice=()=>{ cartNotice.classList.remove("open"); document.body.style.overflow=""; };
+  document.getElementById("noticeClose").addEventListener("click",closeNotice);
+  document.getElementById("noticeLogin").addEventListener("click",()=>{ location.href="login.html?return=review.html"; });
+  cartNotice.addEventListener("click",e=>{ if(e.target===cartNotice) closeNotice(); });
+
+  document.addEventListener("keydown",e=>{
+    if(e.key!=="Escape") return;
+    if(cartModal.classList.contains("open")) closeCart();
+    if(cartNotice.classList.contains("open")) closeNotice();
+  });
+
+  updateBadge();
+
+  /* ===== Toast ===== */
+  let toastTimer;
+  function toast(msg){
+    const t=document.getElementById("toast");
+    t.textContent=msg; t.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer=setTimeout(()=>t.classList.remove("show"),1800);
+  }
+
+  /* ===== Mobile menu ===== */
+  (function(){
+    const hb=document.getElementById("hamburger"), m=document.querySelector(".menu");
+    if(hb&&m) hb.addEventListener("click",()=>{ hb.classList.toggle("open"); m.classList.toggle("open"); });
+  })();
+</script>
+</body>
+</html>

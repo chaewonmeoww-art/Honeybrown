@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>거실공간 | honeybrown</title>
+<title>침실공간 | honeybrown</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
@@ -259,15 +259,15 @@
   <div class="wrap nav">
     <a class="logo" href="index.html"><img src="images/logo_1.png" alt="honeybrown" class="logo-img"></a>
     <nav class="menu">
-      <a href="#" class="active">거실공간</a>
+      <a href="living-room.html">거실공간</a>
       <a href="kitchen.html">주방공간</a>
-      <a href="bedroom.html">침실공간</a>
+      <a href="#" class="active">침실공간</a>
       <a href="study.html">스터디공간</a>
       <a href="review.html">상품후기</a>
     </nav>
     <div class="util" id="util">
       <span class="util-group" id="utilGuest">
-        <a href="login.html?return=living-room.html" class="txt">로그인</a><span class="sep txt">|</span>
+        <a href="login.html?return=bedroom.html" class="txt">로그인</a><span class="sep txt">|</span>
         <a href="#" class="txt">회원가입</a><span class="sep txt">|</span>
       </span>
       <span class="util-group" id="utilUser" style="display:none">
@@ -302,14 +302,17 @@
 <main class="listing">
   <div class="wrap">
     <div class="l-title">
-      <h2>거실공간</h2>
-      <span class="items-badge">89 Items</span>
+      <h2>침실공간</h2>
+      <span class="items-badge">75 Items</span>
     </div>
 
     <div class="toolbar">
       <button class="chip active">전체</button>
-      <button class="chip">거실장 / TV board</button>
-      <button class="chip">거실 유리 장식장</button>
+      <button class="chip">서랍장</button>
+      <button class="chip">옷장</button>
+      <button class="chip">침대</button>
+      <button class="chip">화장대</button>
+      <button class="chip">협탁</button>
       <button class="icon-btn" id="filterBtn" title="필터">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <line x1="4" y1="7" x2="20" y2="7"/><circle cx="9" cy="7" r="2.4" fill="#fff"/>
@@ -331,7 +334,6 @@
       <a href="#">2</a>
       <a href="#">3</a>
       <a href="#">4</a>
-      <a href="#">5</a>
     </div>
   </div>
 </main>
@@ -475,35 +477,37 @@
 <script>
   // [이름, 가격, 색상, 사이즈]
   const products = [
-    ["조지아 모던 거실장 2800","1,090,000","화이트","2400이상"],
-    ["켄싱턴 오크 거실장 2800","1,390,000","오크","2400이상"],
-    ["켄싱턴 월넛 거실장 2800","2,180,000","월넛","2400이상"],
-    ["아폴로 월넛 거실장 2800","2,230,000","월넛","2400이상"],
-    ["보스턴 월넛 거실장 2800","2,320,000","월넛","2400이상"],
-    ["휴스턴 오크 거실장","1,300,000","오크","1800~2400"],
-    ["드보르 오크 거실장","1,290,000","오크","1800~2400"],
-    ["마르세유 그랜드 거실장","1,050,000","네이비","1800~2400"],
-    ["마르세유 로우 거실장","910,000","네이비","1600~1800"],
-    ["마르세유 스위트 거실장","1,090,000","네이비","1800~2400"],
-    ["시애틀 월넛 거실장 2600","2,140,000","월넛","2400이상"],
-    ["시애틀 오크 거실장 2600","1,390,000","오크","2400이상"],
-    ["버클리 월넛 거실장 2600","2,140,000","월넛","2400이상"],
-    ["제우스 월넛 거실장","2,050,000","월넛","1800~2400"],
-    ["윌리엄 월넛 거실장","2,520,000","월넛","2400이상"],
-    ["나폴리 룩 오크 거실장","1,470,000","오크","1800~2400"],
-    ["나폴리 오크 거실장","1,630,000","오크","1800~2400"],
-    ["나폴리 월넛 거실장","2,370,000","월넛","2400이상"],
-    ["나폴리 러블리 거실장","980,000","그레이","1600~1800"],
-    ["피렌체 엘더 거실장","1,140,000","오크","1600~1800"],
+    ["안젤리나 월넛 서랍장","2,400,000","월넛","1800~2400"],
+    ["제시카 유콘 와이드 서랍장","1,290,000","네이비","1800~2400"],
+    ["마르세유 오크 와이드 서랍장","1,690,000","오크","1800~2400"],
+    ["마르세유 월넛 와이드 서랍장","2,800,000","월넛","2400이상"],
+    ["마르세유 와이드 서랍장","1,350,000","네이비","1800~2400"],
+    ["마르세유 그랜드 서랍장","1,540,000","네이비","2400이상"],
+    ["앨르패닝 오크 서랍장","1,560,000","오크","1800~2400"],
+    ["사모니 화이트 TV 서랍장","1,120,000","화이트","1800~2400"],
+    ["제시카 유콘 서랍장","1,120,000","블랙","1600~1800"],
+    ["포세이돈 로맨스 서랍장","980,000","블랙","1600~1800"],
+    ["실비아 유콘 캐비넷 06","890,000","화이트","1600~1800"],
+    ["실비아 유콘 캐비넷 09","1,080,000","화이트","1600~1800"],
+    ["아네뜨 그랜드 수납 장식장","1,420,000","네이비","2400이상"],
+    ["아네뜨 베닝 캐비넷","1,190,000","네이비","1600~1800"],
+    ["사모니 거실 서랍장","1,170,000","블랙","1800~2400"],
+    ["커렌트 럭스 서랍장","880,000","네이비","1600~1800"],
+    ["라플란드 로얄 캐비넷 008","870,000","네이비","1600~1800"],
+    ["에이샤 더블 올인 캐비넷","980,000","오크","1800~2400"],
+    ["에이샤 올인 북 캐비넷","980,000","오크","1600~1800"],
+    ["엔티큐 네이쳐 캐비넷","940,000","오크","1600~1800"],
   ];
   const grid=document.getElementById("grid");
   const itemsBadge=document.querySelector(".items-badge");
+  const TOTAL_LABEL="75 Items";
+  const PAGE="sub3";
   // 각 제품에 원래 이미지 번호 보존
   const allProducts=products.map((p,i)=>({name:p[0],price:p[1],img:i+1,color:p[2],size:p[3]}));
 
   function cardHTML(p){
     return `<div class="card">
-      <div class="thumb"><img src="images/sub_item${p.img}.png" alt="${p.name}" loading="lazy"></div>
+      <div class="thumb"><img src="images/sub3_item${p.img}.png" alt="${p.name}" loading="lazy"></div>
       <div class="info">
         <div class="name">${p.name}</div>
         <div class="price">₩ ${p.price}</div>
@@ -527,7 +531,7 @@
   const searchInput=document.getElementById("searchInput");
   function runSearch(){
     const tokens=searchInput.value.trim().split(/\s+/).filter(Boolean);
-    if(tokens.length===0){ renderGrid(allProducts); itemsBadge.textContent="89 Items"; return; }
+    if(tokens.length===0){ renderGrid(allProducts); itemsBadge.textContent=TOTAL_LABEL; return; }
     const filtered=allProducts.filter(p=>tokens.every(t=>p.name.includes(t)));
     renderGrid(filtered);
     itemsBadge.textContent=filtered.length+" Items";
@@ -551,7 +555,7 @@
   });
   const closeNotice=()=>{ cartNotice.classList.remove("open"); document.body.style.overflow=""; };
   document.getElementById("noticeClose").addEventListener("click",closeNotice);
-  document.getElementById("noticeLogin").addEventListener("click",()=>{ location.href="login.html?return=living-room.html"; });
+  document.getElementById("noticeLogin").addEventListener("click",()=>{ location.href="login.html?return=bedroom.html"; });
   cartNotice.addEventListener("click",e=>{ if(e.target===cartNotice) closeNotice(); });
   document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&cartNotice.classList.contains("open")) closeNotice(); });
 
@@ -570,7 +574,7 @@
   function addToCart(p){
     const c=getCart();
     const f=c.find(x=>x.name===p.name);
-    if(f) f.qty++; else c.push({name:p.name,price:p.price,img:p.img,page:"sub1",qty:1});
+    if(f) f.qty++; else c.push({name:p.name,price:p.price,img:p.img,page:PAGE,qty:1});
     saveCart(c); updateBadge();
   }
 
@@ -728,7 +732,7 @@
     document.querySelectorAll("#swatches .sw").forEach(s=>s.classList.remove("sel"));
     modal.querySelectorAll('.check input').forEach(c=>c.checked=false);
     renderGrid(allProducts);
-    itemsBadge.textContent="89 Items";
+    itemsBadge.textContent=TOTAL_LABEL;
   });
 
   // apply: 선택한 조건으로 제품 필터링 + 정렬

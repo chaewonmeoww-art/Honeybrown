@@ -49,7 +49,7 @@
 
 <script>
   // 안전한 이동 경로만 허용
-  const allowed = {"index.html":1,"living-room.html":1,"kitchen.html":1};
+  const allowed = {"index.html":1,"living-room.html":1,"kitchen.html":1,"bedroom.html":1,"study.html":1};
   const params = new URLSearchParams(location.search);
   let ret = params.get("return");
   if(!allowed[ret]) ret = "index.html";
