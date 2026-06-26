@@ -40,6 +40,17 @@
     .snav__labels button.active{color:#633418;font-weight:700;background:rgba(255,255,255,.82);}
     @media(max-width:1024px){.snav{right:12px;}.snav__labels button{font-size:12px;padding:5px 13px;}}
     @media(max-width:900px){.snav{display:none;}}
+    /* ===== 모바일 히어로 여백 띄우기 ===== */
+    @media(max-width:600px){
+      .container{padding:0 26px;}
+      .hero{min-height:540px;}
+      .hero__eyebrow{margin-bottom:26px;}
+      .hero__title{margin-bottom:28px;line-height:1.5;}
+      .hero__desc{margin-bottom:36px;line-height:1.75;}
+      .btn--solid{padding:16px 28px;}
+      .hero__pager{margin-top:48px;}
+    }
+
     /* ===== 모든 radius 2px ===== */
     *{border-radius:2px !important;}
     .cart__count,.badge-dot,.snav__dot,.snav__end,.icon-btn,.sw .dot,.radio input,.n-ic,.avatar,.rbuyer .avatar{border-radius:50% !important;}
