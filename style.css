@@ -520,3 +520,12 @@ img { max-width: 100%; display: block; }
   .notice__list a { font-size: 13px; }
   .contact__overlay { padding: 28px 22px; }
 }
+
+/* === radius 2px 일괄 적용 (버튼 제외) === */
+.card__thumb,
+.card__badge,
+.review__imgs,
+.review__img,
+.showroom__img,
+.contact,
+.tag { border-radius: 2px !important; }

@@ -16,7 +16,7 @@
   .login-card{background:#fff;width:100%;max-width:400px;border-radius:18px;padding:48px 38px 40px;
               box-shadow:0 24px 60px rgba(70,50,25,.14);text-align:center;}
   .login-logo{height:40px;margin:0 auto 26px;}
-  .login-card h1{font-size:23px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px;}
+  .login-card h1{font-size:23px;font-weight:600;letter-spacing:-.5px;margin-bottom:8px;}
   .login-card .sub{font-size:14px;color:var(--muted);margin-bottom:30px;line-height:1.6;}
   .field-label{display:block;text-align:left;font-size:13px;font-weight:600;color:#5a5247;margin-bottom:9px;}
   .nick-input{width:100%;border:1px solid var(--line);border-radius:10px;padding:15px 16px;font-size:15px;
@@ -30,6 +30,13 @@
   .note{font-size:12px;color:#b3a99b;margin-top:18px;line-height:1.6;}
   .back{display:inline-block;margin-top:22px;font-size:13px;color:var(--muted);text-decoration:none;}
   .back:hover{color:var(--brown);}
+  /* === radius 2px 일괄 적용 (버튼 제외) === */
+  .login-card,.nick-input{border-radius:2px !important;}
+  /* ===== 모든 radius 2px ===== */
+  *{border-radius:2px !important;}
+  .cart__count,.badge-dot,.snav__dot,.snav__end,.icon-btn,.sw .dot,.radio input,.n-ic,.avatar,.rbuyer .avatar{border-radius:50% !important;}
+  input[type=range]::-webkit-slider-thumb{border-radius:50% !important;}
+  input[type=range]::-moz-range-thumb{border-radius:50% !important;}
 </style>
 </head>
 <body>

@@ -84,7 +84,7 @@
   .rthumb{aspect-ratio:4/3;overflow:hidden;background:#f1ece4;}
   .rthumb img{width:100%;height:100%;object-fit:cover;}
   .rbody{padding:18px 18px 20px;}
-  .rname{font-size:15px;font-weight:700;color:#332c24;margin-bottom:6px;letter-spacing:-.3px;}
+  .rname{font-size:15px;font-weight:500;color:#332c24;margin-bottom:6px;letter-spacing:-.3px;}
   .rprice{font-size:14px;font-weight:600;color:#6b6054;margin-bottom:16px;}
   .rline{height:1px;background:var(--line);margin:0 0 16px;}
   .rmeta{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;}
@@ -205,6 +205,34 @@
     .cart-foot{flex-wrap:wrap;gap:14px;}
     .cart-foot .btn-apply{flex:1 0 100%;}
   }
+  /* 폰트 두께 조정 (A2z) - 다른 서브페이지와 동일 */
+  .menu{font-weight:500;}
+  .l-title h2{font-weight:600;}
+  .items-badge{font-weight:500;}
+
+  /* ===== 헤더 메인과 통일 ===== */
+  header{background:rgba(247,244,239,.92);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
+  .nav{height:70px;}
+  .menu{font-size:14px;font-weight:500;color:#633418;}
+  .menu a::after{background:#633418;}
+  .menu a:hover{color:#4f2912;}
+  .menu a.active{color:#633418;}
+  .util{gap:0;font-size:12px;color:#7D411D;}
+  .util a{font-size:12px;color:#7D411D;padding:0 14px;}
+  .util a:hover{color:#4f2912;}
+  .util .sep{color:#7D411D;opacity:.5;font-size:12px;}
+  .util-group{gap:0;}
+  .util .greet{gap:6px;color:#7D411D;padding:0 14px;}
+  .util .greet b{color:#7D411D;font-weight:700;}
+  .util .greet svg{color:#7D411D;}
+  .util .cart{gap:7px;padding-right:0;}
+  .badge-dot{min-width:20px;width:20px;height:20px;background:transparent;border:1px solid #7D411D;color:#7D411D;font-weight:500;padding:0;}
+  @media(max-width:900px){.menu{top:70px;}}
+  /* ===== 모든 radius 2px ===== */
+  *{border-radius:2px !important;}
+  .cart__count,.badge-dot,.snav__dot,.snav__end,.icon-btn,.sw .dot,.radio input,.n-ic,.avatar,.rbuyer .avatar{border-radius:50% !important;}
+  input[type=range]::-webkit-slider-thumb{border-radius:50% !important;}
+  input[type=range]::-moz-range-thumb{border-radius:50% !important;}
 </style>
 </head>
 <body>
@@ -336,7 +364,7 @@
     ["앤틱리 젠틀 책장 세트","1,980,000","구매자 김**님","2026.05.25",5,"서재에 들여놓으려고 구매했는데 생각보다 더 튼튼하고 고급스럽네요. 책뿐만 아니라 소품까지 정리하기 좋아서 만족합니다.",4],
     ["에이슬 올인 북 캐비넷","980,000","구매자 진**님","2026.05.15",5,"자주 보는 책은 오픈 공간에 두고, 잡동사니는 아래 수납장에 넣어두니 깔끔해졌어요. 공부할 때도 집중이 더 잘 되는 것 같습니다.",5],
     ["블랙시크 테이블 세트","940,000","구매자 강**님","2026.05.15",5,"책상 크기가 넉넉해서 노트북, 책, 필기구를 올려놔도 여유가 있어요. 공부할 때 훨씬 집중이 잘 됩니다.",6],
-    ["윌리엄 월넛 거실장","2,520,000","구매자 박**님","2026.05.13",5,"TV장 하나 바꿨을 뿐인데 거실 분위기가 훨씬 고급스러워졌어요. 월넛 색감이 정말 예쁘고 공간이 한층 차분해 보입니다.",7],
+    ["윌리엄 월넛 거실장","2,520,000","구매자 박**님","2026.05.13",5,"TV장 하나 교체했을 뿐인데 거실 분위기가 훨씬 고급스러워졌어요. 월넛 색감이 정말 예쁘고 공간이 한층 차분해 보입니다.",7],
     ["엘르파닝 오크 서랍장","1,560,000","구매자 양**님","2026.05.11",5,"서랍이 넓고 깊어서 계절 옷이나 생활용품 정리하기 편해요. 디자인도 깔끔해서 오래 사용할 것 같습니다.",8],
     ["레베카 와이드 장식장","1,180,000","구매자 이**님","2026.05.11",5,"수납공간이 넉넉해서 그릇, 컵, 식재료까지 깔끔하게 정리할 수 있어요. 주방 정리가 한결 쉬워졌습니다.",9],
     ["나폴리 러블리 거실장","980,000","구매자 강**님","2026.05.10",5,"사진보다 실물이 더 예뻐요. 무게감 있는 컬러 덕분에 거실이 한층 고급스러워 보입니다.",10],

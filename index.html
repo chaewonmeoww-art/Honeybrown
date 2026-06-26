@@ -21,11 +21,12 @@
 
     #sec-best,#sec-review,#sec-showroom,#sec-notice{scroll-margin-top:84px;}
 
-    /* 섹션 간격 200px */
+    /* 섹션 간격 */
+    .hero{margin-bottom:0;}
     .section{padding:100px 0;}
+    .best{margin-top:0;}
     .review{padding:100px 0;}
     .notice-area{padding-top:100px;}
-    .best{margin-top:100px;}
     .footer{margin-top:100px;}
     .snav{position:fixed;right:22px;top:50%;transform:translateY(-50%);display:flex;align-items:stretch;gap:10px;z-index:90;height:52vh;max-height:440px;min-height:320px;}
     .snav__rail{position:relative;width:14px;flex:0 0 14px;order:-1;}
@@ -39,6 +40,11 @@
     .snav__labels button.active{color:#633418;font-weight:700;background:rgba(255,255,255,.82);}
     @media(max-width:1024px){.snav{right:12px;}.snav__labels button{font-size:12px;padding:5px 13px;}}
     @media(max-width:900px){.snav{display:none;}}
+    /* ===== 모든 radius 2px ===== */
+    *{border-radius:2px !important;}
+    .cart__count,.badge-dot,.snav__dot,.snav__end,.icon-btn,.sw .dot,.radio input,.n-ic,.avatar,.rbuyer .avatar{border-radius:50% !important;}
+    input[type=range]::-webkit-slider-thumb{border-radius:50% !important;}
+    input[type=range]::-moz-range-thumb{border-radius:50% !important;}
   </style>
 </head>
 <body>

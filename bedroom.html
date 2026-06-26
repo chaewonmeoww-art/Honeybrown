@@ -259,6 +259,32 @@
   .info .name{font-weight:500;}
   .info .price{font-weight:500;}
   .btns button{font-weight:500;}
+
+  /* ===== 헤더 메인과 통일 ===== */
+  header{background:rgba(247,244,239,.92);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
+  .nav{height:70px;}
+  .menu{font-size:14px;font-weight:500;color:#633418;}
+  .menu a::after{background:#633418;}
+  .menu a:hover{color:#4f2912;}
+  .menu a.active{color:#633418;}
+  .util{gap:0;font-size:12px;color:#7D411D;}
+  .util a{font-size:12px;color:#7D411D;padding:0 14px;}
+  .util a:hover{color:#4f2912;}
+  .util .sep{color:#7D411D;opacity:.5;font-size:12px;}
+  .util-group{gap:0;}
+  .util .greet{gap:6px;color:#7D411D;padding:0 14px;}
+  .util .greet b{color:#7D411D;font-weight:700;}
+  .util .greet svg{color:#7D411D;}
+  .util .cart{gap:7px;padding-right:0;}
+  .badge-dot{min-width:20px;width:20px;height:20px;background:transparent;border:1px solid #7D411D;color:#7D411D;font-weight:500;padding:0;}
+  @media(max-width:900px){.menu{top:70px;}}
+  /* === radius 2px 일괄 적용 (버튼 제외) === */
+  .card,.modal,.notice-box,.items-badge,.search,.pin .field,.ps-track,.ps-fill,.cart-item img,.toast{border-radius:2px !important;}
+  /* ===== 모든 radius 2px ===== */
+  *{border-radius:2px !important;}
+  .cart__count,.badge-dot,.snav__dot,.snav__end,.icon-btn,.sw .dot,.radio input,.n-ic,.avatar,.rbuyer .avatar{border-radius:50% !important;}
+  input[type=range]::-webkit-slider-thumb{border-radius:50% !important;}
+  input[type=range]::-moz-range-thumb{border-radius:50% !important;}
 </style>
 </head>
 <body>
