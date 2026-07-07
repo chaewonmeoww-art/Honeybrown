@@ -494,7 +494,6 @@ img { max-width: 100%; display: block; }
   .gnb.open { display: flex; }
   .gnb a { padding: 14px 24px; font-size: 15px; }
   .gnb a::after { display: none; }
-  .cards { grid-template-columns: 1fr; }
   .showroom__inner,
   .notice-area__inner { grid-template-columns: 1fr; }
   .hero { min-height: 440px; }
@@ -505,6 +504,7 @@ img { max-width: 100%; display: block; }
 
 @media (max-width: 600px) {
   .container { padding: 0 18px; }
+  .cards { grid-template-columns: 1fr; }
   .header__util .util-group a,
   .header__util .greet { font-size: 11px; padding: 0 8px; }
   .hero { min-height: 380px; }
@@ -519,6 +519,109 @@ img { max-width: 100%; display: block; }
   .features li p { max-width: none; }
   .notice__list a { font-size: 13px; }
   .contact__overlay { padding: 28px 22px; }
+}
+
+/* === 태블릿 반응형 === */
+@media (min-width: 901px) and (max-width: 1024px) {
+  .gnb { gap: 28px; }
+}
+
+/* === 방문 예약 모달 === */
+.rsv-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(48,30,16,.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 20px;
+}
+.rsv-overlay.open { display: flex; }
+.rsv-modal {
+  background: #fbf8f3;
+  width: 100%;
+  max-width: 520px;
+  max-height: 92vh;
+  overflow-y: auto;
+  border-radius: 2px;
+  box-shadow: 0 30px 70px rgba(48,30,16,.35);
+  animation: rsvPop .28s ease;
+}
+@keyframes rsvPop { from { transform: translateY(16px); opacity: 0; } to { transform: none; opacity: 1; } }
+.rsv-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 26px 30px;
+  border-bottom: 1px solid var(--line);
+}
+.rsv-eyebrow { font-size: 11px; letter-spacing: .2em; color: var(--brown-light); font-weight: 600; margin-bottom: 8px; }
+.rsv-head h3 { font-size: 22px; font-weight: 600; color: var(--text); }
+.rsv-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9a8f81;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: .2s;
+}
+.rsv-close:hover { background: var(--beige-light); color: var(--brown); }
+.rsv-body { padding: 24px 30px 30px; display: flex; flex-direction: column; gap: 16px; }
+.rsv-row { display: flex; gap: 14px; }
+.rsv-body label { flex: 1; display: flex; flex-direction: column; gap: 7px; font-size: 13px; font-weight: 600; color: #5a5247; }
+.rsv-body input, .rsv-body select, .rsv-body textarea {
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: #fff;
+  padding: 12px 13px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--text);
+  outline: none;
+  width: 100%;
+  transition: .2s;
+}
+.rsv-body input:focus, .rsv-body select:focus, .rsv-body textarea:focus { border-color: var(--brown); }
+.rsv-body textarea { resize: vertical; }
+.rsv-submit {
+  background: var(--brown);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 15px 0;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: .2s;
+}
+.rsv-submit:hover { background: var(--brown-dark); }
+.rsv-done { display: none; padding: 44px 30px 36px; text-align: center; }
+.rsv-done.show { display: block; }
+.rsv-check {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--brown);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+.rsv-done h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; color: var(--text); }
+.rsv-done p { font-size: 14px; color: var(--text-soft); line-height: 1.6; margin-bottom: 24px; }
+.rsv-done .rsv-submit { width: 100%; }
+@media (max-width: 520px) {
+  .rsv-row { flex-direction: column; gap: 16px; }
+  .rsv-head, .rsv-body { padding-left: 20px; padding-right: 20px; }
 }
 
 /* === radius 2px 일괄 적용 (버튼 제외) === */

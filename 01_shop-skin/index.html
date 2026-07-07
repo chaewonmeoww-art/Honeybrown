@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAISON | Minimal Luxury Fashion</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Lora:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<style>
+:root{
+  /* ===== 운영자 수정용 변수 ===== */
+  --main:#1a1a1a;        /* 메인 컬러 */
+  --sub:#8a8079;         /* 서브(보조 텍스트) 컬러 */
+  --point:#d24a32;       /* ★ 포인트 컬러 (강조 1곳에서 관리) */
+  --bg:#ffffff;          /* 배경색 */
+  --bg-soft:#f6f3ef;     /* 섹션 보조 배경 */
+  --line:#e8e3dc;        /* 라인 색 */
+
+  --radius:8px;          /* 모서리 둥글기 */
+  --maxw:1550px;         /* 콘텐츠 최대 폭 */
+  --pad-x:40px;          /* 좌우 여백 */
+  --gap-section:120px;   /* 섹션 사이 간격 */
+  --gap-inner:40px;      /* 영역 내부 간격 */
+
+  /* 글자 크기(계층별) */
+  --fs-hero:64px; --fs-h1:38px; --fs-h2:28px; --fs-h3:18px;
+  --fs-body:15px; --fs-sm:13px; --fs-xs:11px;
+  /* 글자 두께 */
+  --fw-bold:700; --fw-semi:600; --fw-med:500; --fw-reg:400; --fw-light:300;
+
+  --font:'Pretendard','Apple SD Gothic Neo',sans-serif;
+  --font-en:'Archivo',var(--font);
+  --font-serif:'Lora',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:var(--font);color:var(--main);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+.en{font-family:var(--font-en);}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad-x);}
+
+/* ===== Header ===== */
+.topbar{background:var(--main);color:#cfc8c0;font-size:var(--fs-xs);letter-spacing:.04em;}
+.topbar .wrap{height:36px;display:flex;align-items:center;justify-content:flex-end;gap:18px;}
+.topbar a:hover{color:#fff;}
+header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+.nav{height:74px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-family:var(--font-serif);font-size:28px;font-weight:var(--fw-semi);letter-spacing:.18em;}
+.gnb{display:flex;gap:38px;}
+.gnb a{font-family:var(--font-en);font-size:14px;font-weight:var(--fw-med);letter-spacing:.06em;position:relative;padding:6px 0;}
+.gnb a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--point);transform:scaleX(0);transition:transform .25s;}
+.gnb a:hover{color:var(--point);}
+.gnb a:hover::after{transform:scaleX(1);}
+.gnb a.sale{color:var(--point);}
+.hicons{display:flex;gap:20px;font-size:18px;}
+.hicons a{position:relative;}
+.hicons .count{position:absolute;top:-7px;right:-9px;min-width:16px;height:16px;background:var(--point);color:#fff;border-radius:50%;font-size:10px;font-weight:var(--fw-bold);display:flex;align-items:center;justify-content:center;padding:0 4px;}
+.hamb{display:none;font-size:22px;background:none;border:none;cursor:pointer;color:var(--main);}
+
+/* ===== Section base ===== */
+section{padding-block:var(--gap-section);}
+.sec-head{text-align:center;margin-bottom:48px;}
+.sec-head .eyebrow{font-family:var(--font-en);font-size:var(--fs-sm);letter-spacing:.18em;color:var(--point);font-weight:var(--fw-semi);margin-bottom:12px;}
+.sec-head h2{font-family:var(--font-serif);font-size:var(--fs-h1);font-weight:var(--fw-semi);letter-spacing:.01em;}
+.sec-head p{margin-top:12px;color:var(--sub);font-size:var(--fs-body);}
+.more-link{display:inline-flex;align-items:center;gap:8px;margin-top:30px;font-family:var(--font-en);font-size:var(--fs-sm);font-weight:var(--fw-med);letter-spacing:.05em;border-bottom:1px solid var(--main);padding-bottom:3px;}
+.center{text-align:center;}
+
+/* ===== Hero (Swiper) ===== */
+.hero{padding:0;}
+.hero .swiper{width:100%;}
+.hero-slide img{width:100%;height:auto;display:block;}
+.hero .swiper-button-next,.hero .swiper-button-prev{color:#fff;--swiper-navigation-size:26px;}
+.hero .swiper-pagination-bullet{background:#fff;opacity:.5;}
+.hero .swiper-pagination-bullet-active{background:var(--point);opacity:1;}
+
+/* ===== Category ===== */
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.cat-card{display:block;text-align:center;}
+.cat-card img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:var(--radius);transition:.4s;}
+.cat-card:hover img{transform:translateY(-6px);}
+.cat-card span{display:block;margin-top:16px;font-family:var(--font-en);font-size:var(--fs-h3);font-weight:var(--fw-med);letter-spacing:.08em;}
+
+/* ===== Product grid / cards ===== */
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:34px 24px;}
+.item__thumb{position:relative;display:block;border-radius:var(--radius);overflow:hidden;background:var(--bg-soft);}
+.item__thumb img{width:100%;aspect-ratio:1/1;object-fit:cover;transition:transform .5s ease;}
+.item:hover .item__thumb img{transform:scale(1.05);}
+.badge{position:absolute;top:12px;left:12px;font-family:var(--font-en);font-size:var(--fs-xs);font-weight:var(--fw-bold);letter-spacing:.06em;padding:5px 9px;border-radius:var(--radius);color:#fff;}
+.badge--new{background:var(--point);}
+.badge--sale{background:var(--main);left:auto;right:12px;}
+.item__info{padding-top:16px;}
+.item__name{font-size:var(--fs-body);font-weight:var(--fw-med);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:43px;}
+.item__price{margin-top:10px;display:flex;align-items:baseline;gap:8px;}
+.item__price .now{font-family:var(--font-en);font-size:16px;font-weight:var(--fw-bold);color:var(--point);}
+.item__price .was{font-size:var(--fs-sm);color:var(--sub);text-decoration:line-through;}
+
+/* ===== Promo band ===== */
+.promo{padding:0;}
+.promo a{display:block;}
+.promo img{width:100%;height:auto;border-radius:0;}
+.promo.inwrap .wrap{padding-inline:var(--pad-x);}
+.promo.inwrap img{border-radius:var(--radius);}
+
+/* ===== Soft bg section ===== */
+.bg-soft{background:var(--bg-soft);}
+
+/* ===== Footer ===== */
+footer{background:var(--main);color:#b8b0a8;padding-block:70px 36px;margin-top:0;}
+.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:46px;border-bottom:1px solid rgba(255,255,255,.12);}
+.foot-brand .logo{color:#fff;margin-bottom:18px;}
+.foot-brand p{font-size:var(--fs-sm);line-height:1.8;}
+.foot-col h4{font-family:var(--font-en);color:#fff;font-size:var(--fs-sm);letter-spacing:.1em;margin-bottom:18px;font-weight:var(--fw-semi);}
+.foot-col a{display:block;font-size:var(--fs-sm);padding:5px 0;}
+.foot-col a:hover{color:#fff;}
+.foot-cs .num{font-family:var(--font-en);font-size:26px;font-weight:var(--fw-bold);color:#fff;letter-spacing:.02em;}
+.foot-cs .time{font-size:var(--fs-xs);margin:8px 0 16px;}
+.foot-sns{display:flex;gap:14px;font-size:18px;}
+.foot-sns a:hover{color:var(--point);}
+.foot-bot{display:flex;justify-content:space-between;align-items:center;padding-top:26px;font-size:var(--fs-xs);color:#8c847c;flex-wrap:wrap;gap:10px;}
+
+/* ===== Reveal animation ===== */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.61,.36,1);}
+.reveal.is-visible{opacity:1;transform:none;}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
+
+/* ===== Responsive ===== */
+@media(max-width:1100px){
+  :root{--gap-section:90px;--pad-x:24px;}
+  .cat-grid{grid-template-columns:repeat(2,1fr);}
+  .products{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:760px){
+  :root{--fs-h1:28px;--gap-section:64px;}
+  .gnb{position:fixed;inset:74px 0 auto 0;flex-direction:column;gap:0;background:#fff;border-bottom:1px solid var(--line);padding:6px 0;display:none;}
+  .gnb.open{display:flex;}
+  .gnb a{padding:14px 24px;}
+  .gnb a::after{display:none;}
+  .hamb{display:block;}
+  .products{gap:24px 16px;}
+  .foot-top{grid-template-columns:1fr 1fr;gap:28px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER (모든 페이지 동일) ===== -->
+<div class="topbar"><div class="wrap">
+  <a href="login.html">로그인</a><a href="signup.html">회원가입</a><a href="board.html">고객센터</a><a href="cart.html">장바구니</a>
+</div></div>
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="logo">MAISON</a>
+    <nav class="gnb" id="gnb">
+      <a href="products.html">NEW</a>
+      <a href="products.html">BEST</a>
+      <a href="products.html">OUTER</a>
+      <a href="products.html">KNIT</a>
+      <a href="products.html">DRESS</a>
+      <a href="products.html">BAG</a>
+      <a href="products.html" class="sale">SALE</a>
+    </nav>
+    <div class="hicons">
+      <a href="products.html" aria-label="검색"><i class="fa-solid fa-magnifying-glass"></i></a>
+      <a href="login.html" aria-label="계정"><i class="fa-regular fa-user"></i></a>
+      <a href="cart.html" aria-label="장바구니"><i class="fa-solid fa-bag-shopping"></i><span class="count">2</span></a>
+      <button class="hamb" id="hamb" aria-label="메뉴"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== 1. HERO ===== -->
+<section class="hero">
+  <div class="swiper heroSwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide hero-slide"><a href="products.html"><img src="images/hero1.png" alt="New Season"></a></div>
+      <div class="swiper-slide hero-slide"><a href="products.html"><img src="images/hero2.png" alt="The Essentials"></a></div>
+      <div class="swiper-slide hero-slide"><a href="products.html"><img src="images/hero3.png" alt="Member Sale"></a></div>
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+</section>
+
+<!-- ===== 2. CATEGORY ===== -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow en">CATEGORY</p>
+      <h2>Shop by Category</h2>
+    </div>
+    <div class="cat-grid reveal">
+      <a href="products.html" class="cat-card"><img src="images/cat_outer.png" alt="Outer"><span>OUTER</span></a>
+      <a href="products.html" class="cat-card"><img src="images/cat_knit.png" alt="Knit"><span>KNIT</span></a>
+      <a href="products.html" class="cat-card"><img src="images/cat_dress.png" alt="Dress"><span>DRESS</span></a>
+      <a href="products.html" class="cat-card"><img src="images/cat_bag.png" alt="Bag"><span>BAG</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 3. 추천상품 ===== -->
+<section class="bg-soft">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow en">PICK FOR YOU</p>
+      <h2>추천 상품</h2>
+      <p>에디터가 엄선한 이번 시즌 시그니처 아이템</p>
+    </div>
+    <ul class="products">
+      <li class="item reveal"><a href="product-detail.html" class="item__thumb"><img src="images/item01.png" alt="상품"><span class="badge badge--new">NEW</span></a><div class="item__info"><p class="item__name">오버사이즈 울 코트 카멜</p><p class="item__price"><span class="now en">328,000</span><span class="was en">390,000</span></p></div></li>
+      <li class="item reveal"><a href="product-detail.html" class="item__thumb"><img src="images/item02.png" alt="상품"></a><div class="item__info"><p class="item__name">캐시미어 라운드 니트</p><p class="item__price"><span class="now en">158,000</span></p></div></li>
+      <li class="item reveal"><a href="product-detail.html" class="item__thumb"><img src="images/item03.png" alt="상품"><span class="badge badge--sale">SALE</span></a><div class="item__info"><p class="item__name">플리츠 미디 드레스</p><p class="item__price"><span class="now en">142,000</span><span class="was en">198,000</span></p></div></li>
+      <li class="item reveal"><a href="product-detail.html" class="item__thumb"><img src="images/item04.png" alt="상품"></a><div class="item__info"><p class="item__name">테일러드 와이드 팬츠</p><p class="item__price"><span class="now en">128,000</span></p></div></li>
+      <li class="item reveal"><a href="product-detail.html" class="item__thumb"><img src="images/item05.png" alt="상품"><span class="badge badge--new">NEW</span></a><div class="item__info"><p class="item__name">레더 토트백 브라운</p><p class="item__price"><span class="now en">268,000</span></p></div></li>
+      <li class="item reveal"><a href="product-detail.html" class="item__thumb"><img src="images/item06.png" alt="상품"></a><div class="item__info"><p class="item__name">스웨이드 로퍼</p><p class="item__price"><span class="now en">198,000</span></p></div></li>
+      <li class="item reveal"><a href="product-detail.html" class="item__thumb"><img src="images/item07.png" alt="상품"></a><div class="item__info"><p class="item__name">울 펠트 햇</p><p class="item__price"><span class="now en">89,000</span></p></div></li>
+      <li class="item reveal"><a href="product-detail.html" class="item__thumb"><img src="images/item08.png" alt="상품"><span class="badge badge--sale">SALE</span></a><div class="item__info"><p class="item__name">캐시미어 머플러 그레이</p><p class="item__price"><span class="now en">78,000</span><span class="was en">110,000</span></p></div></li>
+    </ul>
+    <div class="center"><a href="products.html" class="more-link en">VIEW ALL <i class="fa-solid fa-arrow-right"></i></a></div>
+  </div>
+</section>
+
+<!-- ===== 4. 띠배너 1 ===== -->
+<section class="promo">
+  <a href="signup.html"><img src="images/banner1.png" alt="Membership"></a>
+</section>
+
+<!-- ===== 5. 신상품 ===== -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow en">NEW ARRIVALS</p>
+      <h2>신상품</h2>
+      <p>2026 Spring / Summer 컬렉션 입고</p>
+    </div>
+    <ul class="products">
+      <li class="item reveal"><a href="product-detail.html" class="item__thumb"><img src="images/item09.png" alt="상품"><span class="badge badge--new">NEW</span></a><div class="item__info"><p class="item__name">싱글 트렌치 코트</p><p class="item__price"><span class="now en">348,000</span></p></div></li>
+      <li class="item reveal"><a href="product-detail.html" class="item__thumb"><img src="images/item10.png" alt="상품"><span class="badge badge--new">NEW</span></a><div class="item__info"><p class="item__name">립 카디건 아이보리</p><p class="item__price"><span class="now en">134,000</span></p></div></li>
+      <li class="item reveal"><a href="product-detail.html" class="item__thumb"><img src="images/item11.png" alt="상품"><span class="badge badge--new">NEW</span></a><div class="item__info"><p class="item__name">실크 블라우스</p><p class="item__price"><span class="now en">119,000</span></p></div></li>
+      <li class="item reveal"><a href="product-detail.html" class="item__thumb"><img src="images/item12.png" alt="상품"><span class="badge badge--new">NEW</span></a><div class="item__info"><p class="item__name">스트레이트 데님 팬츠</p><p class="item__price"><span class="now en">98,000</span></p></div></li>
+      <li class="item reveal"><a href="product-detail.html" class="item__thumb"><img src="images/item13.png" alt="상품"><span class="badge badge--new">NEW</span></a><div class="item__info"><p class="item__name">미니 크로스백 블랙</p><p class="item__price"><span class="now en">178,000</span></p></div></li>
+      <li class="item reveal"><a href="product-detail.html" class="item__thumb"><img src="images/item14.png" alt="상품"><span class="badge badge--new">NEW</span></a><div class="item__info"><p class="item__name">첼시 부츠 다크브라운</p><p class="item__price"><span class="now en">228,000</span></p></div></li>
+      <li class="item reveal"><a href="product-detail.html" class="item__thumb"><img src="images/item15.png" alt="상품"><span class="badge badge--new">NEW</span></a><div class="item__info"><p class="item__name">린넨 오버셔츠</p><p class="item__price"><span class="now en">96,000</span></p></div></li>
+      <li class="item reveal"><a href="product-detail.html" class="item__thumb"><img src="images/item16.png" alt="상품"><span class="badge badge--new">NEW</span></a><div class="item__info"><p class="item__name">새틴 슬립 드레스</p><p class="item__price"><span class="now en">126,000</span></p></div></li>
+    </ul>
+    <div class="center"><a href="products.html" class="more-link en">VIEW ALL <i class="fa-solid fa-arrow-right"></i></a></div>
+  </div>
+</section>
+
+<!-- ===== 6. 베스트 ===== -->
+<section class="bg-soft">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow en">BEST SELLERS</p>
+      <h2>베스트</h2>
+      <p>가장 많은 사랑을 받은 스테디 아이템</p>
+    </div>
+    <ul class="products">
+      <li class="item reveal"><a href="product-detail.html" class="item__thumb"><img src="images/item02.png" alt="상품"><span class="badge badge--new">1</span></a><div class="item__info"><p class="item__name">캐시미어 라운드 니트</p><p class="item__price"><span class="now en">158,000</span></p></div></li>
+      <li class="item reveal"><a href="product-detail.html" class="item__thumb"><img src="images/item05.png" alt="상품"><span class="badge badge--new">2</span></a><div class="item__info"><p class="item__name">레더 토트백 브라운</p><p class="item__price"><span class="now en">268,000</span></p></div></li>
+      <li class="item reveal"><a href="product-detail.html" class="item__thumb"><img src="images/item01.png" alt="상품"><span class="badge badge--new">3</span></a><div class="item__info"><p class="item__name">오버사이즈 울 코트 카멜</p><p class="item__price"><span class="now en">328,000</span><span class="was en">390,000</span></p></div></li>
+      <li class="item reveal"><a href="product-detail.html" class="item__thumb"><img src="images/item06.png" alt="상품"><span class="badge badge--new">4</span></a><div class="item__info"><p class="item__name">스웨이드 로퍼</p><p class="item__price"><span class="now en">198,000</span></p></div></li>
+      <li class="item reveal"><a href="product-detail.html" class="item__thumb"><img src="images/item10.png" alt="상품"></a><div class="item__info"><p class="item__name">립 카디건 아이보리</p><p class="item__price"><span class="now en">134,000</span></p></div></li>
+      <li class="item reveal"><a href="product-detail.html" class="item__thumb"><img src="images/item03.png" alt="상품"></a><div class="item__info"><p class="item__name">플리츠 미디 드레스</p><p class="item__price"><span class="now en">142,000</span><span class="was en">198,000</span></p></div></li>
+      <li class="item reveal"><a href="product-detail.html" class="item__thumb"><img src="images/item13.png" alt="상품"></a><div class="item__info"><p class="item__name">미니 크로스백 블랙</p><p class="item__price"><span class="now en">178,000</span></p></div></li>
+      <li class="item reveal"><a href="product-detail.html" class="item__thumb"><img src="images/item04.png" alt="상품"></a><div class="item__info"><p class="item__name">테일러드 와이드 팬츠</p><p class="item__price"><span class="now en">128,000</span></p></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 7. 띠배너 2 (룩북) ===== -->
+<section class="promo">
+  <a href="products.html"><img src="images/banner2.png" alt="Lookbook 2026"></a>
+</section>
+
+<!-- ===== FOOTER (모든 페이지 동일) ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="logo">MAISON</div>
+        <p>미니멀하고 오래 입을 수 있는 옷.<br>천연 소재로 완성하는 데일리 럭셔리.</p>
+      </div>
+      <div class="foot-col">
+        <h4>SHOP</h4>
+        <a href="products.html">신상품</a><a href="products.html">베스트</a><a href="products.html">아우터</a><a href="products.html">세일</a>
+      </div>
+      <div class="foot-col">
+        <h4>INFO</h4>
+        <a href="board.html">공지사항</a><a href="board.html">자주묻는질문</a><a href="board.html">배송/반품</a><a href="board.html">1:1문의</a>
+      </div>
+      <div class="foot-col foot-cs">
+        <h4>CUSTOMER</h4>
+        <div class="num en">1588-0000</div>
+        <div class="time">MON-FRI 10:00 - 18:00 / 주말·공휴일 휴무</div>
+        <div class="foot-sns">
+          <a href="#" aria-label="instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="youtube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="x"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>상호 MAISON &nbsp;|&nbsp; 대표 홍길동 &nbsp;|&nbsp; 사업자등록번호 000-00-00000 &nbsp;|&nbsp; 통신판매업 2026-서울-00000</span>
+      <span>© 2026 MAISON. ALL RIGHTS RESERVED.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  // Hero 슬라이드
+  new Swiper('.heroSwiper',{
+    loop:true, speed:700,
+    autoplay:{delay:4500,disableOnInteraction:false},
+    pagination:{el:'.swiper-pagination',clickable:true},
+    navigation:{nextEl:'.swiper-button-next',prevEl:'.swiper-button-prev'}
+  });
+  // 모바일 메뉴
+  var hamb=document.getElementById('hamb'),gnb=document.getElementById('gnb');
+  if(hamb) hamb.addEventListener('click',function(){gnb.classList.toggle('open');});
+  // 스크롤 fade + slide-up
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target);} });
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+</script>
+</body>
+</html>

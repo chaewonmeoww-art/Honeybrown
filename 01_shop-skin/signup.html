@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회원가입 | MAISON</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Lora:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{
+  --main:#1a1a1a; --sub:#8a8079; --point:#d24a32; --bg:#ffffff; --bg-soft:#f6f3ef; --line:#e8e3dc;
+  --radius:8px; --maxw:1550px; --pad-x:40px; --gap-section:120px;
+  --fs-h1:38px; --fs-h3:18px; --fs-body:15px; --fs-sm:13px; --fs-xs:11px;
+  --fw-bold:700; --fw-semi:600; --fw-med:500; --fw-reg:400; --fw-light:300;
+  --font:'Pretendard','Apple SD Gothic Neo',sans-serif; --font-en:'Archivo',var(--font); --font-serif:'Lora',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:var(--font);color:var(--main);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased;}
+img{display:block;max-width:100%;} a{text-decoration:none;color:inherit;} ul{list-style:none;} button{font-family:inherit;cursor:pointer;}
+.en{font-family:var(--font-en);}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad-x);}
+.topbar{background:var(--main);color:#cfc8c0;font-size:var(--fs-xs);letter-spacing:.04em;}
+.topbar .wrap{height:36px;display:flex;align-items:center;justify-content:flex-end;gap:18px;} .topbar a:hover{color:#fff;}
+header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+.nav{height:74px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-family:var(--font-serif);font-size:28px;font-weight:var(--fw-semi);letter-spacing:.18em;}
+.gnb{display:flex;gap:38px;}
+.gnb a{font-family:var(--font-en);font-size:14px;font-weight:var(--fw-med);letter-spacing:.06em;position:relative;padding:6px 0;}
+.gnb a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--point);transform:scaleX(0);transition:transform .25s;}
+.gnb a:hover{color:var(--point);} .gnb a:hover::after{transform:scaleX(1);} .gnb a.sale{color:var(--point);}
+.hicons{display:flex;gap:20px;font-size:18px;} .hicons a{position:relative;}
+.hicons .count{position:absolute;top:-7px;right:-9px;min-width:16px;height:16px;background:var(--point);color:#fff;border-radius:50%;font-size:10px;font-weight:var(--fw-bold);display:flex;align-items:center;justify-content:center;padding:0 4px;}
+.hamb{display:none;font-size:22px;background:none;border:none;cursor:pointer;color:var(--main);}
+
+.auth{display:flex;justify-content:center;padding:64px var(--pad-x) var(--gap-section);}
+.auth-card{width:100%;max-width:480px;}
+.auth-card .ttl{text-align:center;margin-bottom:36px;}
+.auth-card .ttl h1{font-family:var(--font-serif);font-size:var(--fs-h1);font-weight:var(--fw-semi);}
+.auth-card .ttl p{color:var(--sub);font-size:var(--fs-body);margin-top:10px;}
+.field{margin-bottom:16px;}
+.field label{display:block;font-size:var(--fs-sm);color:var(--sub);margin-bottom:8px;}
+.field label .req{color:var(--point);}
+.field input{width:100%;height:52px;border:1px solid var(--line);border-radius:var(--radius);padding:0 16px;font-family:inherit;font-size:var(--fs-body);background:#fff;}
+.field input:focus{outline:none;border-color:var(--main);}
+.field .hint{font-size:var(--fs-xs);color:var(--sub);margin-top:6px;}
+.field.dup{display:flex;gap:8px;}
+.field.dup input{flex:1;}
+.field.dup button{flex:0 0 110px;border:1px solid var(--main);background:#fff;border-radius:var(--radius);font-size:var(--fs-sm);font-weight:var(--fw-med);}
+.agree{border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin:26px 0 8px;}
+.agree .all{display:flex;align-items:center;gap:10px;font-weight:var(--fw-semi);font-size:var(--fs-body);padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:14px;}
+.agree .it{display:flex;align-items:center;gap:10px;font-size:var(--fs-sm);color:#46403a;padding:7px 0;}
+.agree .it .opt{color:var(--sub);} .agree .it a{margin-left:auto;color:var(--sub);text-decoration:underline;font-size:var(--fs-xs);}
+.agree input{accent-color:var(--point);width:17px;height:17px;}
+.btn-primary{width:100%;height:54px;background:var(--point);color:#fff;border:none;border-radius:var(--radius);font-size:var(--fs-body);font-weight:var(--fw-semi);margin-top:18px;}
+.btn-primary:hover{filter:brightness(.94);}
+.foot-links{text-align:center;margin-top:22px;font-size:var(--fs-sm);color:var(--sub);}
+.foot-links a{color:var(--main);font-weight:var(--fw-med);} .foot-links a:hover{color:var(--point);}
+
+footer{background:var(--main);color:#b8b0a8;padding-block:70px 36px;}
+.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:46px;border-bottom:1px solid rgba(255,255,255,.12);}
+.foot-brand .logo{color:#fff;margin-bottom:18px;} .foot-brand p{font-size:var(--fs-sm);line-height:1.8;}
+.foot-col h4{font-family:var(--font-en);color:#fff;font-size:var(--fs-sm);letter-spacing:.1em;margin-bottom:18px;font-weight:var(--fw-semi);}
+.foot-col a{display:block;font-size:var(--fs-sm);padding:5px 0;} .foot-col a:hover{color:#fff;}
+.foot-cs .num{font-family:var(--font-en);font-size:26px;font-weight:var(--fw-bold);color:#fff;} .foot-cs .time{font-size:var(--fs-xs);margin:8px 0 16px;}
+.foot-sns{display:flex;gap:14px;font-size:18px;} .foot-sns a:hover{color:var(--point);}
+.foot-bot{display:flex;justify-content:space-between;align-items:center;padding-top:26px;font-size:var(--fs-xs);color:#8c847c;flex-wrap:wrap;gap:10px;}
+
+@media(max-width:760px){
+  :root{--fs-h1:28px;--pad-x:24px;}
+  .gnb{position:fixed;inset:74px 0 auto 0;flex-direction:column;gap:0;background:#fff;border-bottom:1px solid var(--line);padding:6px 0;display:none;}
+  .gnb.open{display:flex;} .gnb a{padding:14px 24px;} .gnb a::after{display:none;} .hamb{display:block;}
+  .foot-top{grid-template-columns:1fr 1fr;gap:28px;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <a href="login.html">로그인</a><a href="signup.html">회원가입</a><a href="board.html">고객센터</a><a href="cart.html">장바구니</a>
+</div></div>
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="logo">MAISON</a>
+    <nav class="gnb" id="gnb">
+      <a href="products.html">NEW</a><a href="products.html">BEST</a><a href="products.html">OUTER</a>
+      <a href="products.html">KNIT</a><a href="products.html">DRESS</a><a href="products.html">BAG</a><a href="products.html" class="sale">SALE</a>
+    </nav>
+    <div class="hicons">
+      <a href="products.html" aria-label="검색"><i class="fa-solid fa-magnifying-glass"></i></a>
+      <a href="login.html" aria-label="계정"><i class="fa-regular fa-user"></i></a>
+      <a href="cart.html" aria-label="장바구니"><i class="fa-solid fa-bag-shopping"></i><span class="count">2</span></a>
+      <button class="hamb" id="hamb" aria-label="메뉴"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+
+<div class="auth">
+  <div class="auth-card">
+    <div class="ttl"><h1>Join Us</h1><p>MAISON의 새로운 멤버가 되어보세요.</p></div>
+
+    <div class="field dup">
+      <div style="flex:1;"><label>아이디 (이메일) <span class="req">*</span></label><input type="email" placeholder="example@maison.com"></div>
+      <button style="align-self:flex-end;height:52px;">중복확인</button>
+    </div>
+    <div class="field"><label>비밀번호 <span class="req">*</span></label><input type="password" placeholder="영문, 숫자, 특수문자 포함 8자 이상"><p class="hint">8~20자, 영문/숫자/특수문자를 조합해 주세요.</p></div>
+    <div class="field"><label>비밀번호 확인 <span class="req">*</span></label><input type="password" placeholder="비밀번호 재입력"></div>
+    <div class="field"><label>이름 <span class="req">*</span></label><input type="text" placeholder="이름"></div>
+    <div class="field"><label>휴대폰 번호 <span class="req">*</span></label><input type="tel" placeholder="'-' 없이 숫자만 입력"></div>
+
+    <div class="agree">
+      <label class="all"><input type="checkbox"> 전체 동의합니다.</label>
+      <label class="it"><input type="checkbox"> 만 14세 이상입니다. <span class="opt">(필수)</span></label>
+      <label class="it"><input type="checkbox"> 이용약관 동의 <span class="opt">(필수)</span><a href="#">보기</a></label>
+      <label class="it"><input type="checkbox"> 개인정보 수집·이용 동의 <span class="opt">(필수)</span><a href="#">보기</a></label>
+      <label class="it"><input type="checkbox"> 마케팅 정보 수신 동의 <span class="opt">(선택)</span><a href="#">보기</a></label>
+    </div>
+
+    <button class="btn-primary">가입하기</button>
+    <div class="foot-links">이미 계정이 있으신가요? <a href="login.html">로그인</a></div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand"><div class="logo">MAISON</div><p>미니멀하고 오래 입을 수 있는 옷.<br>천연 소재로 완성하는 데일리 럭셔리.</p></div>
+      <div class="foot-col"><h4>SHOP</h4><a href="products.html">신상품</a><a href="products.html">베스트</a><a href="products.html">아우터</a><a href="products.html">세일</a></div>
+      <div class="foot-col"><h4>INFO</h4><a href="board.html">공지사항</a><a href="board.html">자주묻는질문</a><a href="board.html">배송/반품</a><a href="board.html">1:1문의</a></div>
+      <div class="foot-col foot-cs"><h4>CUSTOMER</h4><div class="num en">1588-0000</div><div class="time">MON-FRI 10:00 - 18:00 / 주말·공휴일 휴무</div>
+        <div class="foot-sns"><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i class="fa-brands fa-youtube"></i></a><a href="#"><i class="fa-brands fa-x-twitter"></i></a></div>
+      </div>
+    </div>
+    <div class="foot-bot"><span>상호 MAISON &nbsp;|&nbsp; 대표 홍길동 &nbsp;|&nbsp; 사업자등록번호 000-00-00000 &nbsp;|&nbsp; 통신판매업 2026-서울-00000</span><span>© 2026 MAISON. ALL RIGHTS RESERVED.</span></div>
+  </div>
+</footer>
+
+<script>
+  var hamb=document.getElementById('hamb'),gnb=document.getElementById('gnb');
+  if(hamb) hamb.addEventListener('click',function(){gnb.classList.toggle('open');});
+</script>
+</body>
+</html>

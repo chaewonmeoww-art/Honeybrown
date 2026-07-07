@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>오버사이즈 울 코트 | MAISON</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Lora:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{
+  --main:#1a1a1a; --sub:#8a8079; --point:#d24a32; --bg:#ffffff; --bg-soft:#f6f3ef; --line:#e8e3dc;
+  --radius:8px; --maxw:1550px; --pad-x:40px; --gap-section:120px; --gap-inner:40px;
+  --fs-hero:64px; --fs-h1:38px; --fs-h2:28px; --fs-h3:18px; --fs-body:15px; --fs-sm:13px; --fs-xs:11px;
+  --fw-bold:700; --fw-semi:600; --fw-med:500; --fw-reg:400; --fw-light:300;
+  --font:'Pretendard','Apple SD Gothic Neo',sans-serif; --font-en:'Archivo',var(--font); --font-serif:'Lora',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:var(--font);color:var(--main);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased;}
+img{display:block;max-width:100%;} a{text-decoration:none;color:inherit;} ul{list-style:none;} button{font-family:inherit;cursor:pointer;}
+.en{font-family:var(--font-en);}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad-x);}
+
+/* Header */
+.topbar{background:var(--main);color:#cfc8c0;font-size:var(--fs-xs);letter-spacing:.04em;}
+.topbar .wrap{height:36px;display:flex;align-items:center;justify-content:flex-end;gap:18px;} .topbar a:hover{color:#fff;}
+header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+.nav{height:74px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-family:var(--font-serif);font-size:28px;font-weight:var(--fw-semi);letter-spacing:.18em;}
+.gnb{display:flex;gap:38px;}
+.gnb a{font-family:var(--font-en);font-size:14px;font-weight:var(--fw-med);letter-spacing:.06em;position:relative;padding:6px 0;}
+.gnb a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--point);transform:scaleX(0);transition:transform .25s;}
+.gnb a:hover{color:var(--point);} .gnb a:hover::after{transform:scaleX(1);} .gnb a.sale{color:var(--point);}
+.hicons{display:flex;gap:20px;font-size:18px;} .hicons a{position:relative;}
+.hicons .count{position:absolute;top:-7px;right:-9px;min-width:16px;height:16px;background:var(--point);color:#fff;border-radius:50%;font-size:10px;font-weight:var(--fw-bold);display:flex;align-items:center;justify-content:center;padding:0 4px;}
+.hamb{display:none;font-size:22px;background:none;border:none;cursor:pointer;color:var(--main);}
+
+.content{padding:46px 0 var(--gap-section);}
+.crumb{font-family:var(--font-en);font-size:var(--fs-xs);letter-spacing:.1em;color:var(--sub);margin-bottom:30px;} .crumb b{color:var(--point);}
+
+/* Detail top */
+.pd{display:grid;grid-template-columns:1fr 1fr;gap:60px;}
+.gallery .main{border-radius:var(--radius);overflow:hidden;background:var(--bg-soft);}
+.gallery .main img{width:100%;aspect-ratio:1/1;object-fit:cover;}
+.gallery .thumbs{display:flex;gap:12px;margin-top:14px;}
+.gallery .thumbs img{width:84px;height:84px;object-fit:cover;border-radius:var(--radius);border:1px solid var(--line);cursor:pointer;background:var(--bg-soft);transition:.2s;}
+.gallery .thumbs img.on,.gallery .thumbs img:hover{border-color:var(--point);}
+
+.pd-info{padding-top:6px;}
+.pd-info .label{font-family:var(--font-en);font-size:var(--fs-xs);letter-spacing:.14em;color:var(--point);font-weight:var(--fw-semi);margin-bottom:14px;}
+.pd-info h1{font-family:var(--font-serif);font-size:var(--fs-h2);font-weight:var(--fw-semi);line-height:1.3;}
+.pd-info .rate{display:flex;align-items:center;gap:8px;margin:14px 0 22px;font-size:var(--fs-sm);color:var(--sub);}
+.pd-info .rate .stars{color:var(--point);}
+.price-row{display:flex;align-items:baseline;gap:12px;padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.price-row .now{font-family:var(--font-en);font-size:32px;font-weight:var(--fw-bold);color:var(--point);}
+.price-row .was{font-size:var(--fs-body);color:var(--sub);text-decoration:line-through;}
+.price-row .off{font-family:var(--font-en);font-size:var(--fs-sm);font-weight:var(--fw-bold);color:#fff;background:var(--point);padding:3px 8px;border-radius:var(--radius);}
+
+.opt{margin:24px 0;}
+.opt label{display:block;font-size:var(--fs-sm);color:var(--sub);margin-bottom:8px;}
+.opt select{width:100%;height:48px;border:1px solid var(--line);border-radius:var(--radius);padding:0 16px;font-family:inherit;font-size:var(--fs-body);color:var(--main);background:#fff;-webkit-appearance:none;appearance:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238a8079' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>");background-repeat:no-repeat;background-position:right 16px center;margin-bottom:12px;}
+.qtyrow{display:flex;align-items:center;justify-content:space-between;background:var(--bg-soft);border-radius:var(--radius);padding:14px 18px;margin-top:6px;}
+.qtyrow .nm{font-size:var(--fs-sm);}
+.stepper{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:var(--radius);background:#fff;overflow:hidden;}
+.stepper button{width:36px;height:36px;border:none;background:#fff;font-size:16px;color:var(--main);}
+.stepper button:hover{color:var(--point);} .stepper span{min-width:42px;text-align:center;font-size:var(--fs-body);font-weight:var(--fw-med);}
+.total{display:flex;align-items:baseline;justify-content:space-between;margin:26px 0 22px;}
+.total .t{font-size:var(--fs-body);font-weight:var(--fw-med);} .total .v .en{font-size:28px;font-weight:var(--fw-bold);color:var(--point);} .total .v small{color:var(--sub);font-size:var(--fs-sm);}
+
+.buy-btns{display:flex;gap:10px;}
+.btn{flex:1;height:56px;border-radius:var(--radius);font-size:var(--fs-body);font-weight:var(--fw-semi);display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid transparent;transition:.2s;}
+.btn-wish{flex:0 0 56px;background:#fff;border-color:var(--line);color:var(--main);font-size:18px;}
+.btn-wish:hover{border-color:var(--point);color:var(--point);}
+.btn-cart{background:#fff;border-color:var(--main);color:var(--main);} .btn-cart:hover{background:var(--bg-soft);}
+.btn-buy{background:var(--point);color:#fff;} .btn-buy:hover{filter:brightness(.94);}
+.ship{margin-top:22px;font-size:var(--fs-sm);color:var(--sub);line-height:1.9;}
+.ship i{color:var(--main);width:18px;}
+
+/* Tabs */
+.tabs{margin-top:90px;border-top:2px solid var(--main);}
+.tabnav{display:flex;border-bottom:1px solid var(--line);}
+.tabnav button{flex:1;padding:20px 0;background:none;border:none;font-size:var(--fs-body);font-weight:var(--fw-med);color:var(--sub);position:relative;}
+.tabnav button.on{color:var(--main);font-weight:var(--fw-semi);}
+.tabnav button.on::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--point);}
+.tabpanel{display:none;padding:54px 0;}
+.tabpanel.on{display:block;}
+.detail-img{max-width:800px;margin:0 auto;}
+.detail-img img{width:100%;border-radius:var(--radius);}
+
+/* Reviews */
+.rv-summary{display:flex;align-items:center;gap:40px;background:var(--bg-soft);border-radius:var(--radius);padding:34px;margin-bottom:36px;}
+.rv-summary .score{text-align:center;}
+.rv-summary .score .num{font-family:var(--font-en);font-size:52px;font-weight:var(--fw-bold);line-height:1;}
+.rv-summary .score .stars{color:var(--point);margin-top:8px;}
+.rv-bars{flex:1;}
+.rv-bars .row{display:flex;align-items:center;gap:12px;font-size:var(--fs-sm);margin:6px 0;}
+.rv-bars .bar{flex:1;height:6px;background:#e7e0d8;border-radius:99px;overflow:hidden;}
+.rv-bars .bar span{display:block;height:100%;background:var(--point);}
+.review{border-bottom:1px solid var(--line);padding:26px 0;}
+.review .rh{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.review .who{display:flex;align-items:center;gap:10px;font-size:var(--fs-sm);}
+.review .who .av{width:34px;height:34px;border-radius:50%;background:var(--bg-soft);display:flex;align-items:center;justify-content:center;color:var(--sub);}
+.review .who b{font-weight:var(--fw-semi);} .review .who .stars{color:var(--point);font-size:var(--fs-sm);}
+.review .date{font-size:var(--fs-xs);color:var(--sub);}
+.review .opt-tag{font-size:var(--fs-xs);color:var(--sub);background:var(--bg-soft);padding:4px 10px;border-radius:var(--radius);display:inline-block;margin:6px 0 10px;}
+.review p{font-size:var(--fs-body);color:#3a342f;line-height:1.75;}
+.review .rv-imgs{display:flex;gap:10px;margin-top:14px;}
+.review .rv-imgs img{width:90px;height:90px;object-fit:cover;border-radius:var(--radius);}
+
+/* Q&A */
+.qa-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+.qa-head .btn-ask{height:44px;padding:0 22px;border:1px solid var(--main);border-radius:var(--radius);background:#fff;font-weight:var(--fw-med);font-size:var(--fs-sm);}
+.qa-table{width:100%;border-top:1px solid var(--main);border-collapse:collapse;}
+.qa-table td{padding:18px 14px;border-bottom:1px solid var(--line);font-size:var(--fs-sm);vertical-align:middle;}
+.qa-table .st{color:var(--point);font-weight:var(--fw-semi);font-size:var(--fs-xs);}
+.qa-table .st.wait{color:var(--sub);}
+.qa-table .ttl{font-weight:var(--fw-med);} .qa-table .ttl i{color:var(--sub);margin-right:8px;}
+.qa-table .meta{color:var(--sub);text-align:center;white-space:nowrap;}
+
+/* Footer */
+footer{background:var(--main);color:#b8b0a8;padding-block:70px 36px;}
+.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:46px;border-bottom:1px solid rgba(255,255,255,.12);}
+.foot-brand .logo{color:#fff;margin-bottom:18px;} .foot-brand p{font-size:var(--fs-sm);line-height:1.8;}
+.foot-col h4{font-family:var(--font-en);color:#fff;font-size:var(--fs-sm);letter-spacing:.1em;margin-bottom:18px;font-weight:var(--fw-semi);}
+.foot-col a{display:block;font-size:var(--fs-sm);padding:5px 0;} .foot-col a:hover{color:#fff;}
+.foot-cs .num{font-family:var(--font-en);font-size:26px;font-weight:var(--fw-bold);color:#fff;letter-spacing:.02em;}
+.foot-cs .time{font-size:var(--fs-xs);margin:8px 0 16px;}
+.foot-sns{display:flex;gap:14px;font-size:18px;} .foot-sns a:hover{color:var(--point);}
+.foot-bot{display:flex;justify-content:space-between;align-items:center;padding-top:26px;font-size:var(--fs-xs);color:#8c847c;flex-wrap:wrap;gap:10px;}
+
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.61,.36,1);}
+.reveal.is-visible{opacity:1;transform:none;}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
+
+@media(max-width:1100px){:root{--pad-x:24px;} .pd{grid-template-columns:1fr;gap:34px;}}
+@media(max-width:760px){
+  :root{--fs-h2:24px;}
+  .gnb{position:fixed;inset:74px 0 auto 0;flex-direction:column;gap:0;background:#fff;border-bottom:1px solid var(--line);padding:6px 0;display:none;}
+  .gnb.open{display:flex;} .gnb a{padding:14px 24px;} .gnb a::after{display:none;} .hamb{display:block;}
+  .tabnav button{font-size:var(--fs-sm);} .rv-summary{flex-direction:column;gap:24px;}
+  .foot-top{grid-template-columns:1fr 1fr;gap:28px;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <a href="login.html">로그인</a><a href="signup.html">회원가입</a><a href="board.html">고객센터</a><a href="cart.html">장바구니</a>
+</div></div>
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="logo">MAISON</a>
+    <nav class="gnb" id="gnb">
+      <a href="products.html">NEW</a><a href="products.html">BEST</a><a href="products.html">OUTER</a>
+      <a href="products.html">KNIT</a><a href="products.html">DRESS</a><a href="products.html">BAG</a><a href="products.html" class="sale">SALE</a>
+    </nav>
+    <div class="hicons">
+      <a href="products.html" aria-label="검색"><i class="fa-solid fa-magnifying-glass"></i></a>
+      <a href="login.html" aria-label="계정"><i class="fa-regular fa-user"></i></a>
+      <a href="cart.html" aria-label="장바구니"><i class="fa-solid fa-bag-shopping"></i><span class="count">2</span></a>
+      <button class="hamb" id="hamb" aria-label="메뉴"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+
+<div class="content wrap">
+  <p class="crumb en">HOME / OUTER / <b>OVERSIZED WOOL COAT</b></p>
+
+  <div class="pd">
+    <!-- Gallery -->
+    <div class="gallery">
+      <div class="main"><img id="mainImg" src="images/item01.png" alt="오버사이즈 울 코트"></div>
+      <div class="thumbs">
+        <img class="on" src="images/item01.png" alt="썸네일" onclick="document.getElementById('mainImg').src=this.src;document.querySelectorAll('.thumbs img').forEach(t=>t.classList.remove('on'));this.classList.add('on')">
+        <img src="images/item09.png" alt="썸네일" onclick="document.getElementById('mainImg').src=this.src;document.querySelectorAll('.thumbs img').forEach(t=>t.classList.remove('on'));this.classList.add('on')">
+        <img src="images/item02.png" alt="썸네일" onclick="document.getElementById('mainImg').src=this.src;document.querySelectorAll('.thumbs img').forEach(t=>t.classList.remove('on'));this.classList.add('on')">
+        <img src="images/item06.png" alt="썸네일" onclick="document.getElementById('mainImg').src=this.src;document.querySelectorAll('.thumbs img').forEach(t=>t.classList.remove('on'));this.classList.add('on')">
+      </div>
+    </div>
+
+    <!-- Info -->
+    <div class="pd-info">
+      <p class="label en">NEW · OUTERWEAR</p>
+      <h1>오버사이즈 울 코트 카멜</h1>
+      <div class="rate"><span class="stars">★★★★★</span> 4.9 · 리뷰 128</div>
+
+      <div class="price-row">
+        <span class="now en">328,000</span>
+        <span class="was en">390,000</span>
+        <span class="off en">-16%</span>
+      </div>
+
+      <div class="opt">
+        <label>색상</label>
+        <select><option>색상 선택</option><option>카멜</option><option>차콜</option><option>블랙</option></select>
+        <label>사이즈</label>
+        <select><option>사이즈 선택</option><option>S</option><option>M</option><option>L</option></select>
+      </div>
+
+      <div class="qtyrow">
+        <span class="nm">오버사이즈 울 코트 카멜 / M</span>
+        <span class="stepper"><button onclick="chQty(-1)">−</button><span id="qty">1</span><button onclick="chQty(1)">+</button></span>
+      </div>
+
+      <div class="total">
+        <span class="t">TOTAL</span>
+        <span class="v"><span class="en" id="total">328,000</span> 원 <small id="cnt">(1개)</small></span>
+      </div>
+
+      <div class="buy-btns">
+        <button class="btn btn-wish" aria-label="찜"><i class="fa-regular fa-heart"></i></button>
+        <button class="btn btn-cart"><i class="fa-solid fa-bag-shopping"></i> 장바구니</button>
+        <button class="btn btn-buy">바로구매</button>
+      </div>
+
+      <div class="ship">
+        <div><i class="fa-solid fa-truck"></i> 무료배송 · 오후 2시 이전 주문 시 당일 출고</div>
+        <div><i class="fa-solid fa-rotate-left"></i> 수령 후 14일 이내 무료 교환·반품</div>
+        <div><i class="fa-solid fa-leaf"></i> 80% 울 / 20% 캐시미어 · 이탈리아 원단</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <div class="tabnav">
+      <button class="on" onclick="tab(0)">상세설명</button>
+      <button onclick="tab(1)">리뷰 <span class="en">128</span></button>
+      <button onclick="tab(2)">Q&amp;A <span class="en">12</span></button>
+    </div>
+
+    <!-- 상세 -->
+    <div class="tabpanel on">
+      <div class="detail-img"><img src="images/detail_long.png" alt="상품 상세 설명"></div>
+    </div>
+
+    <!-- 리뷰 -->
+    <div class="tabpanel">
+      <div class="rv-summary">
+        <div class="score"><div class="num en">4.9</div><div class="stars">★★★★★</div><div class="cnt" style="font-size:var(--fs-xs);color:var(--sub);margin-top:6px;">128개 리뷰</div></div>
+        <div class="rv-bars">
+          <div class="row"><span>5점</span><span class="bar"><span style="width:86%"></span></span><span class="en">86%</span></div>
+          <div class="row"><span>4점</span><span class="bar"><span style="width:10%"></span></span><span class="en">10%</span></div>
+          <div class="row"><span>3점</span><span class="bar"><span style="width:3%"></span></span><span class="en">3%</span></div>
+          <div class="row"><span>2점</span><span class="bar"><span style="width:1%"></span></span><span class="en">1%</span></div>
+          <div class="row"><span>1점</span><span class="bar"><span style="width:0%"></span></span><span class="en">0%</span></div>
+        </div>
+      </div>
+
+      <div class="review">
+        <div class="rh"><div class="who"><span class="av"><i class="fa-solid fa-user"></i></span><b>김지**</b><span class="stars">★★★★★</span></div><span class="date">2026.06.01</span></div>
+        <span class="opt-tag">카멜 / M</span>
+        <p>핏이 정말 예뻐요. 어깨가 적당히 떨어져서 안에 니트 입어도 여유롭고, 색감이 화면보다 더 고급스러워요. 무게감도 적당해서 봄가을 내내 입을 것 같습니다.</p>
+        <div class="rv-imgs"><img src="images/item01.png" alt="리뷰사진"><img src="images/item09.png" alt="리뷰사진"></div>
+      </div>
+      <div class="review">
+        <div class="rh"><div class="who"><span class="av"><i class="fa-solid fa-user"></i></span><b>이수**</b><span class="stars">★★★★★</span></div><span class="date">2026.05.28</span></div>
+        <span class="opt-tag">차콜 / L</span>
+        <p>원단 퀄리티가 가격값을 합니다. 캐시미어 혼방이라 까슬거림 없이 부드럽고 따뜻해요. 재구매 의사 100%입니다.</p>
+      </div>
+      <div class="review">
+        <div class="rh"><div class="who"><span class="av"><i class="fa-solid fa-user"></i></span><b>박하**</b><span class="stars">★★★★☆</span></div><span class="date">2026.05.20</span></div>
+        <span class="opt-tag">카멜 / S</span>
+        <p>오버핏이라 한 사이즈 작게 주문했는데 딱 좋아요. 다만 배송이 하루 늦어서 별 하나 뺐습니다. 옷 자체는 만족스러워요.</p>
+      </div>
+    </div>
+
+    <!-- Q&A -->
+    <div class="tabpanel">
+      <div class="qa-head">
+        <span style="font-size:var(--fs-sm);color:var(--sub);">상품에 대한 궁금한 점을 남겨주세요.</span>
+        <button class="btn-ask"><i class="fa-solid fa-pen"></i> 문의하기</button>
+      </div>
+      <table class="qa-table">
+        <tr><td class="st">답변완료</td><td class="ttl"><i class="fa-solid fa-lock"></i> 사이즈 문의드립니다. 키 168 / 58kg 인데 M 괜찮을까요?</td><td class="meta">김**</td><td class="meta">2026.06.02</td></tr>
+        <tr><td class="st wait">답변대기</td><td class="ttl">카멜 색상 재입고 예정일이 궁금합니다.</td><td class="meta">최**</td><td class="meta">2026.06.01</td></tr>
+        <tr><td class="st">답변완료</td><td class="ttl">드라이클리닝만 가능한가요? 홈케어 방법 알려주세요.</td><td class="meta">정**</td><td class="meta">2026.05.27</td></tr>
+        <tr><td class="st">답변완료</td><td class="ttl"><i class="fa-solid fa-lock"></i> 교환 신청은 어디서 하나요?</td><td class="meta">한**</td><td class="meta">2026.05.22</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand"><div class="logo">MAISON</div><p>미니멀하고 오래 입을 수 있는 옷.<br>천연 소재로 완성하는 데일리 럭셔리.</p></div>
+      <div class="foot-col"><h4>SHOP</h4><a href="products.html">신상품</a><a href="products.html">베스트</a><a href="products.html">아우터</a><a href="products.html">세일</a></div>
+      <div class="foot-col"><h4>INFO</h4><a href="board.html">공지사항</a><a href="board.html">자주묻는질문</a><a href="board.html">배송/반품</a><a href="board.html">1:1문의</a></div>
+      <div class="foot-col foot-cs"><h4>CUSTOMER</h4><div class="num en">1588-0000</div><div class="time">MON-FRI 10:00 - 18:00 / 주말·공휴일 휴무</div>
+        <div class="foot-sns"><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i class="fa-brands fa-youtube"></i></a><a href="#"><i class="fa-brands fa-x-twitter"></i></a></div>
+      </div>
+    </div>
+    <div class="foot-bot"><span>상호 MAISON &nbsp;|&nbsp; 대표 홍길동 &nbsp;|&nbsp; 사업자등록번호 000-00-00000 &nbsp;|&nbsp; 통신판매업 2026-서울-00000</span><span>© 2026 MAISON. ALL RIGHTS RESERVED.</span></div>
+  </div>
+</footer>
+
+<script>
+  var hamb=document.getElementById('hamb'),gnb=document.getElementById('gnb');
+  if(hamb) hamb.addEventListener('click',function(){gnb.classList.toggle('open');});
+  // 탭 전환 (UI)
+  function tab(i){
+    document.querySelectorAll('.tabnav button').forEach(function(b,j){b.classList.toggle('on',j===i);});
+    document.querySelectorAll('.tabpanel').forEach(function(p,j){p.classList.toggle('on',j===i);});
+  }
+  // 수량 (UI 표시용)
+  var UNIT=328000, q=1;
+  function won(n){return n.toLocaleString();}
+  function chQty(d){ q=Math.max(1,q+d); document.getElementById('qty').textContent=q;
+    document.getElementById('total').textContent=won(UNIT*q); document.getElementById('cnt').textContent='('+q+'개)'; }
+</script>
+</body>
+</html>
